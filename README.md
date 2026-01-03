@@ -169,44 +169,52 @@ https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/llm
 
 ```
 ateliers-ai-mcp-projectbase/
+├─ content/                              # ドキュメントコンテンツ（Docusaurus連携）
+│  ├─ architecture/                     # アーキテクチャドキュメント
+│  │  ├─ overview.md                   # 全体概要
+│  │  ├─ project-relationships.md      # プロジェクト間関係
+│  │  ├─ dependency-management.md      # 依存関係管理
+│  │  └─ layer-design.md               # レイヤー設計
+│  │
+│  ├─ design-principles/                # 設計原則
+│  │  ├─ core-concepts.md              # コア概念
+│  │  ├─ ddd-guidelines.md             # DDD設計ガイド
+│  │  ├─ clean-architecture.md         # クリーンアーキテクチャ
+│  │  └─ solid-principles.md           # SOLID原則
+│  │
+│  ├─ development-guidelines/           # 開発ガイドライン
+│  │  ├─ naming-conventions.md         # 命名規則
+│  │  ├─ directory-structure.md        # ディレクトリ構造
+│  │  ├─ coding-standards.md           # コーディング規約
+│  │  └─ testing-strategy.md           # テスト戦略
+│  │
+│  ├─ release-strategy/                 # リリース戦略
+│  │  ├─ versioning.md                 # バージョニング
+│  │  ├─ packaging.md                  # パッケージング
+│  │  └─ compatibility.md              # 互換性管理
+│  │
+│  └─ project-knowledge/                # プロジェクト固有知識
+│     ├─ mcp-core/                     # Core固有ドキュメント
+│     ├─ mcp-services/                 # Services固有ドキュメント
+│     ├─ mcp-tools/                    # Tools固有ドキュメント
+│     ├─ mcp-processes/                # Processes固有ドキュメント
+│     └─ voice-engines/                # VoiceEngines固有ドキュメント
+│
 ├─ scripts/                              # セットアップ・更新スクリプト
-│  ├─ init-for-project.sh               # 初回セットアップ
-│  └─ update-project-knowledge.sh       # 手動更新
+│  ├─ init-for-project.sh               # 初回セットアップ (bash)
+│  ├─ init-for-project.ps1              # 初回セットアップ (PowerShell)
+│  ├─ update-project-knowledge.sh       # 手動更新 (bash)
+│  └─ update-project-knowledge.ps1      # 手動更新 (PowerShell)
 │
 ├─ .github/workflows/                    # GitHub Actions
 │  └─ update-project-knowledge.yml      # 自動更新ワークフロー
 │
-├─ architecture/                         # アーキテクチャドキュメント
-│  ├─ overview.md                       # 全体概要
-│  ├─ project-relationships.md          # プロジェクト間関係
-│  ├─ dependency-management.md          # 依存関係管理
-│  └─ layer-design.md                   # レイヤー設計
+├─ docs/                                 # リポジトリメタドキュメント
+│  └─ github-actions-auto-update.md     # ワークフロー説明
 │
-├─ design-principles/                    # 設計原則
-│  ├─ core-concepts.md                  # コア概念
-│  ├─ ddd-guidelines.md                 # DDD設計ガイド
-│  ├─ clean-architecture.md             # クリーンアーキテクチャ
-│  └─ solid-principles.md               # SOLID原則
-│
-├─ development-guidelines/               # 開発ガイドライン
-│  ├─ naming-conventions.md             # 命名規則
-│  ├─ directory-structure.md            # ディレクトリ構造
-│  ├─ coding-standards.md               # コーディング規約
-│  └─ testing-strategy.md               # テスト戦略
-│
-├─ release-strategy/                     # リリース戦略
-│  ├─ versioning.md                     # バージョニング
-│  ├─ packaging.md                      # パッケージング
-│  └─ compatibility.md                  # 互換性管理
-│
-├─ project-knowledge/                    # プロジェクト固有知識
-│  ├─ mcp-core/                         # Core固有ドキュメント
-│  ├─ mcp-services/                     # Services固有ドキュメント
-│  ├─ mcp-tools/                        # Tools固有ドキュメント
-│  ├─ mcp-processes/                    # Processes固有ドキュメント
-│  └─ voice-engines/                    # VoiceEngines固有ドキュメント
-│
-└─ llms.txt                              # AI統合用インデックス
+├─ README.md
+├─ llms.txt                              # AI統合用インデックス
+└─ LICENSE
 
 ```
 
