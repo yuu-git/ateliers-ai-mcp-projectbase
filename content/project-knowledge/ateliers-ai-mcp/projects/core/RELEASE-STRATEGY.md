@@ -1,33 +1,39 @@
-# �����[�X�헪
+﻿---
+title: リリース戦略 (mcp-core)
+category: プロジェクトナレッジ
+description: Ateliers.Ai.Mcp.Core の NuGet パッケージリリース戦略、バージョニング、ワークフローについて解説します。
+tags: [MCP, NuGet, リリース, バージョニング, セマンティックバージョニング]
+---
+# リリース戦略
 
-���̃h�L�������g�ł́AAteliers.Ai.Mcp.Core �� NuGet �p�b�P�[�W�����[�X�헪�ɂ��Đ������܂��B
+このドキュメントでは、Ateliers.Ai.Mcp.Core の NuGet パッケージリリース戦略について説明します。
 
-## �o�[�W�����Ǘ��̕��j
+## バージョン管理の方針
 
-### �Z�}���e�B�b�N�o�[�W���j���O
+### セマンティックバージョニング
 
 ```
 MAJOR.MINOR.PATCH[-PRERELEASE]
-��: 0.3.0-beta.1
+例: 0.3.0-beta.1
 ```
 
-- **MAJOR**: �j��I�ύX�i����݊����Ȃ��j
-- **MINOR**: �V�@�\�ǉ��i����݊�������j
-- **PATCH**: �o�O�C���i����݊�������j
-- **PRERELEASE**: �v�������[�X�ł̃T�t�B�b�N�X
+- **MAJOR**: 破壊的変更（後方互換性なし）
+- **MINOR**: 新機能追加（後方互換性あり）
+- **PATCH**: バグ修正（後方互換性あり）
+- **PRERELEASE**: プレリリース版のサフィックス
 
-### �v�������[�X�ł̃T�t�B�b�N�X
+### プレリリース版のサフィックス
 
-| �T�t�B�b�N�X | �p�r | �� |
+| サフィックス | 用途 | 例 |
 |------------|------|-----|
-| `-alpha.N` | ���ɏ����i�K�AAPI ���s���� | `0.3.0-alpha.1` |
-| `-beta.N` | �@�\�͂قڊ����A�e�X�g�� | `0.3.0-beta.1` |
-| `-rc.N` | �����[�X���iRelease Candidate�j | `0.3.0-rc.1` |
-| `-preview.N` | �v���r���[�� | `0.3.0-preview.1` |
+| `-alpha.N` | 非常に初期段階、API が不安定 | `0.3.0-alpha.1` |
+| `-beta.N` | 機能はほぼ完成、テスト中 | `0.3.0-beta.1` |
+| `-rc.N` | リリース候補（Release Candidate） | `0.3.0-rc.1` |
+| `-preview.N` | プレビュー版 | `0.3.0-preview.1` |
 
-## �����[�X���[�N�t���[
+## リリースワークフロー
 
-### 1. �J���t�F�[�Y�iAlpha�Łj
+### 1. 開発フェーズ（Alpha版）
 
 ```xml
 <!-- src/Ateliers.Ai.Mcp.Core/Ateliers.Ai.Mcp.Core.csproj -->
@@ -38,7 +44,7 @@ MAJOR.MINOR.PATCH[-PRERELEASE]
 ```
 
 ```sh
-# �����[�X
+# リリース
 git add .
 git commit -m "Release 0.3.0-alpha.1"
 git push origin master
@@ -47,11 +53,11 @@ git tag v0.3.0-alpha.1
 git push origin v0.3.0-alpha.1
 ```
 
-**NuGet �ł̈���:**
-- �v�������[�X�łƂ��ĕ\��
-- `--prerelease` �t���O���K�v
+**NuGet での扱い:**
+- プレリリース版として表示
+- `--prerelease` フラグが必要
 
-### 2. �e�X�g�t�F�[�Y�iBeta�Łj
+### 2. テストフェーズ（Beta版）
 
 ```xml
 <Version>0.3.0-beta.1</Version>
@@ -63,11 +69,11 @@ git tag v0.3.0-beta.1
 git push origin v0.3.0-beta.1
 ```
 
-**NuGet �ł̈���:**
-- �v�������[�X�łƂ��ĕ\��
-- �@�\�͊����A�o�O�C���̂�
+**NuGet での扱い:**
+- プレリリース版として表示
+- 機能は完成、バグ修正のみ
 
-### 3. �����[�X���iRC�Łj
+### 3. リリース候補（RC版）
 
 ```xml
 <Version>0.3.0-rc.1</Version>
@@ -79,11 +85,11 @@ git tag v0.3.0-rc.1
 git push origin v0.3.0-rc.1
 ```
 
-**NuGet �ł̈���:**
-- �v�������[�X�łƂ��ĕ\��
-- �ŏI�e�X�g�i�K
+**NuGet での扱い:**
+- プレリリース版として表示
+- 最終テスト段階
 
-### 4. ���������[�X
+### 4. 正式リリース
 
 ```xml
 <Version>0.3.0</Version>
@@ -97,59 +103,59 @@ git tag v0.3.0
 git push origin v0.3.0
 ```
 
-**NuGet �ł̈���:**
-- ����łƂ��ĕ\��
-- �f�t�H���g�ŃC���X�g�[���\
+**NuGet での扱い:**
+- 安定版として表示
+- デフォルトでインストール可能
 
-## �����[�X�`�F�b�N���X�g
+## リリースチェックリスト
 
-### �v�������[�X��
+### プレリリース版
 
-- [ ] csproj �̃o�[�W�������X�V�i��: `0.3.0-beta.1`�j
-- [ ] �ύX������ README �ɋL��
-- [ ] ���[�J���Ńr���h�������m�F
-- [ ] ���[�J���Ńe�X�g�������m�F�i`dotnet test`�j
-- [ ] �R�~�b�g���v�b�V��
-- [ ] �^�O�쐬�i��: `v0.3.0-beta.1`�j
-- [ ] �^�O�v�b�V��
-- [ ] GitHub Actions �Ő������m�F
-- [ ] NuGet.org �Ńv�������[�X�łƂ��Č��J���ꂽ���Ƃ��m�F
+- [ ] csproj のバージョンを更新（例: `0.3.0-beta.1`）
+- [ ] 変更履歴を README に記載
+- [ ] ローカルでビルド成功を確認
+- [ ] ローカルでテスト成功を確認（`dotnet test`）
+- [ ] コミット＆プッシュ
+- [ ] タグ作成（例: `v0.3.0-beta.1`）
+- [ ] タグプッシュ
+- [ ] GitHub Actions で成功を確認
+- [ ] NuGet.org でプレリリース版として公開されたことを確認
 
-### ���������[�X
+### 正式リリース
 
-- [ ] csproj �̃o�[�W�������X�V�i��: `0.3.0`�j
-- [ ] CHANGELOG.md ���X�V
-- [ ] README.md �̃o�[�W���������X�V
-- [ ] ���[�J���Ńr���h�������m�F
-- [ ] ���[�J���Ńe�X�g�������m�F�i`dotnet test`�j
-- [ ] �R�~�b�g���v�b�V��
-- [ ] �^�O�쐬�i��: `v0.3.0`�j
-- [ ] �^�O�v�b�V��
-- [ ] GitHub Actions �Ő������m�F
-- [ ] NuGet.org �Ő����łƂ��Č��J���ꂽ���Ƃ��m�F
-- [ ] GitHub Release ���쐬���ꂽ���Ƃ��m�F
-- [ ] �ˑ��v���W�F�N�g�ł̓���m�F
+- [ ] csproj のバージョンを更新（例: `0.3.0`）
+- [ ] CHANGELOG.md を更新
+- [ ] README.md のバージョン情報を更新
+- [ ] ローカルでビルド成功を確認
+- [ ] ローカルでテスト成功を確認（`dotnet test`）
+- [ ] コミット＆プッシュ
+- [ ] タグ作成（例: `v0.3.0`）
+- [ ] タグプッシュ
+- [ ] GitHub Actions で成功を確認
+- [ ] NuGet.org で正式版として公開されたことを確認
+- [ ] GitHub Release が作成されたことを確認
+- [ ] 依存プロジェクトでの動作確認
 
-## NuGet �p�b�P�[�W�̏�ԊǗ�
+## NuGet パッケージの状態管理
 
-### Listed�i�\���j
-- �������ʂɕ\�������
-- `dotnet add package` �ŃC���X�g�[���\
-- ����łƂ��Đ��������
+### Listed（表示）
+- 検索結果に表示される
+- `dotnet add package` でインストール可能
+- 安定版として推奨される
 
-### Unlisted�i��\���j
-- �������ʂɕ\������Ȃ�
-- �o�[�W�����𒼐ڎw�肷��΃C���X�g�[���\
-- �J������e�X�g�p�Ɏg�p
+### Unlisted（非表示）
+- 検索結果に表示されない
+- バージョンを直接指定すればインストール可能
+- 開発中やテスト用に使用
 
-### Deprecated�i�񐄏��j
-- �x�����b�Z�[�W���\�������
-- ��փo�[�W�������ē��ł���
-- ����ă����[�X�����o�[�W�����Ɏg�p
+### Deprecated（非推奨）
+- 警告メッセージが表示される
+- 代替バージョンを案内できる
+- 誤ってリリースしたバージョンに使用
 
-## GitHub Actions �̎�������
+## GitHub Actions の自動判定
 
-`.github/workflows/ci-cd.yml` �ł́A�^�O���� `-` ���܂܂�Ă��邩�Ŏ����I�Ƀv�������[�X�𔻒肵�܂��F
+`.github/workflows/ci-cd.yml` では、タグ名に `-` が含まれているかで自動的にプレリリースを判定します：
 
 ```yaml
 - name: Create GitHub Release
@@ -161,46 +167,46 @@ git push origin v0.3.0
     prerelease: ${{ contains(github.ref_name, '-') }}
 ```
 
-- `v0.3.0-beta.1` �� Prerelease ?
-- `v0.3.0` �� Release ?
+- `v0.3.0-beta.1` → Prerelease ?
+- `v0.3.0` → Release ?
 
-## �g���u���V���[�e�B���O
+## トラブルシューティング
 
-### ������o�[�W�����������[�X���Ă��܂���
+### 誤ったバージョンをリリースしてしまった
 
-1. **NuGet.org �� Unlist�i��\�����j**
+1. **NuGet.org で Unlist（非表示化）**
    - https://www.nuget.org/packages/Ateliers.Ai.Mcp.Core/manage
-   - �Y���o�[�W������I������ "Unlist"
+   - 該当バージョンを選択して "Unlist"
 
-2. **Deprecated �Ƃ��Čx����ǉ�**
-   - "Mark as deprecated" �Ōx�����b�Z�[�W��ݒ�
-   - ��: "����ă����[�X����܂����B�o�[�W���� 0.3.0 ���g�p���Ă��������B"
+2. **Deprecated として警告を追加**
+   - "Mark as deprecated" で警告メッセージを設定
+   - 例: "誤ってリリースされました。バージョン 0.3.0 を使用してください。"
 
-3. **�^�O���폜**
+3. **タグを削除**
    ```sh
-   # ���[�J��
-   git tag -d v������o�[�W����
+   # ローカル
+   git tag -d v誤ったバージョン
    
-   # �����[�g
-   git push origin :refs/tags/v������o�[�W����
+   # リモート
+   git push origin :refs/tags/v誤ったバージョン
    ```
 
-4. **�������o�[�W�����������[�X**
-   - �}�C�i�[�o�[�W�������グ��i��: `0.2.1` �� `0.2.2`�j
-   - �����o�[�W�����ԍ��͍ė��p�ł��Ȃ�
+4. **正しいバージョンをリリース**
+   - マイナーバージョンを上げる（例: `0.2.1` → `0.2.2`）
+   - 同じバージョン番号は再利用できない
 
-### �v�������[�X�ł�����łƂ��ĕ\�������
+### プレリリース版が安定版として表示される
 
-- ���ׂẴo�[�W������ Unlisted �ɂȂ��Ă��Ȃ����m�F
-- �ŐV�̈���ł� Listed �ɂ���
+- すべてのバージョンが Unlisted になっていないか確認
+- 最新の安定版を Listed にする
 
-### GitHub Actions �����s����
+### GitHub Actions が失敗する
 
-- �^�O�ƃo�[�W��������v���Ă��邩�m�F
-- csproj �̃o�[�W�����`�������������m�F
-- NuGet API �L�[���L�����m�F
+- タグとバージョンが一致しているか確認
+- csproj のバージョン形式が正しいか確認
+- NuGet API キーが有効か確認
 
-## �Q�l�����N
+## 参考リンク
 
 - [NuGet Package Versioning](https://docs.microsoft.com/en-us/nuget/concepts/package-versioning)
 - [Semantic Versioning 2.0.0](https://semver.org/)
