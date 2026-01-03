@@ -1,0 +1,226 @@
+# ateliers-ai-mcp-projectbase
+
+> ateliers-ai-mcp プロジェクト群のためのプロジェクトナレッジベース
+> AI-DDD（AI駆動ドキュメント駆動開発）を実現するための設計ドキュメント、アーキテクチャガイドライン、開発方針を集約管理
+
+## Overview
+
+- **Repository**: https://github.com/yuu-git/ateliers-ai-mcp-projectbase
+- **Author**: @yuu-git
+- **Language**: Japanese (日本語)
+- **License**: MIT
+- **Type**: Project Knowledge Base (Text-based)
+- **Primary Use**: Git Submodule
+- **Last Updated**: 2026-01-04 (Initial Release)
+
+## Purpose
+
+このリポジトリは、ateliers-ai-mcp プロジェクト群全体で共有される設計思想、アーキテクチャパターン、開発ガイドラインを提供します。
+AIがプロジェクトの意図を正確に理解し、一貫性のあるコード生成を支援するためのドキュメント駆動開発（DDD）を実践します。
+
+## Target Projects
+
+このナレッジベースは以下のプロジェクトで共有されます：
+
+- **ateliers-ai-mcp-core**: MCPプロトコル実装とコア機能
+- **ateliers-ai-mcp-services**: 外部サービス連携（FFmpeg、VOICEVOX等）
+- **ateliers-ai-mcp-tools**: 統合ツール（Docusaurus、AteliersDev等）
+- **ateliers-ai-mcp-processes**: AI統合プロセス（Claude、Copilot等）
+- **ateliers-ai-mcpserver**: MCPサーバー実装
+- **ateliers-voice-engines**: 音声エンジン統合
+
+## Installation
+
+### Quick Setup (Recommended)
+
+```bash
+# ワンライナーで自動セットアップ
+curl -fsSL https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/scripts/init-for-project.sh | bash
+```
+
+このスクリプトは以下を自動実行します：
+- サブモジュールの追加と初期化
+- masterブランチへの切り替え
+- 更新スクリプトのコピー
+- GitHub Actions の設定（オプション）
+
+### Manual Setup
+
+```bash
+# サブモジュールとして追加
+git submodule add https://github.com/yuu-git/ateliers-ai-mcp-projectbase.git .submodules/ateliers-ai-mcp-projectbase
+
+# 初期化と更新
+git submodule update --init --recursive
+
+# masterブランチに切り替え
+cd .submodules/ateliers-ai-mcp-projectbase
+git checkout master
+git pull origin master
+cd ../..
+```
+
+## Updates
+
+### Method 1: Manual Script
+
+```bash
+# 更新スクリプトを実行（init-for-project.sh でコピー済み）
+./scripts/update-project-knowledge.sh
+```
+
+### Method 2: GitHub Actions (Auto-update)
+
+毎週月曜日9時に自動更新（init-for-project.sh で設定可能）
+
+手動実行：GitHub > Actions > Update Project Knowledge > Run workflow
+
+### Method 3: Direct Command
+
+```bash
+cd .submodules/ateliers-ai-mcp-projectbase
+git checkout master
+git pull origin master
+cd ../..
+```
+
+## Directory Structure
+
+```
+ateliers-ai-mcp-projectbase/
+├─ scripts/                              # セットアップ・更新スクリプト
+│  ├─ init-for-project.sh               # 初回セットアップ
+│  └─ update-project-knowledge.sh       # 手動更新
+├─ .github/workflows/                    # GitHub Actions
+│  └─ update-project-knowledge.yml      # 自動更新ワークフロー
+├─ architecture/                         # アーキテクチャドキュメント
+│  ├─ overview.md                       # 全体概要
+│  ├─ project-relationships.md          # プロジェクト間関係
+│  ├─ dependency-management.md          # 依存関係管理
+│  └─ layer-design.md                   # レイヤー設計
+├─ design-principles/                    # 設計原則
+│  ├─ core-concepts.md                  # コア概念
+│  ├─ ddd-guidelines.md                 # DDD設計ガイド
+│  ├─ clean-architecture.md             # クリーンアーキテクチャ
+│  └─ solid-principles.md               # SOLID原則
+├─ development-guidelines/               # 開発ガイドライン
+│  ├─ naming-conventions.md             # 命名規則
+│  ├─ directory-structure.md            # ディレクトリ構造
+│  ├─ coding-standards.md               # コーディング規約
+│  └─ testing-strategy.md               # テスト戦略
+├─ release-strategy/                     # リリース戦略
+│  ├─ versioning.md                     # バージョニング
+│  ├─ packaging.md                      # パッケージング
+│  └─ compatibility.md                  # 互換性管理
+├─ project-knowledge/                    # プロジェクト固有知識
+│  ├─ mcp-core/                         # Core固有ドキュメント
+│  ├─ mcp-services/                     # Services固有ドキュメント
+│  ├─ mcp-tools/                        # Tools固有ドキュメント
+│  └─ mcp-processes/                    # Processes固有ドキュメント
+├─ README.md
+├─ llms.txt                              # このファイル
+└─ LICENSE
+```
+
+## Knowledge Base Content
+
+### 🏗️ Architecture (準備中)
+
+プロジェクト全体のアーキテクチャ設計
+
+- **overview.md**: ateliers-ai-mcp プロジェクト群の全体像と設計思想
+- **project-relationships.md**: 各プロジェクト間の関係性と依存関係
+- **dependency-management.md**: NuGetパッケージ管理戦略
+- **layer-design.md**: Core/Services/Tools/Processes のレイヤー設計
+
+### 🎯 Design Principles (準備中)
+
+設計の基本原則とパターン
+
+- **core-concepts.md**: プロジェクト全体で共有するコア概念
+- **ddd-guidelines.md**: ValueObject、Entity、Aggregateの設計方針
+- **clean-architecture.md**: 依存関係の方向性とレイヤー間通信
+- **solid-principles.md**: 各プロジェクトで守るべき設計原則
+
+### 💻 Development Guidelines (準備中)
+
+開発における具体的なガイドライン
+
+- **naming-conventions.md**: プロジェクト、名前空間、クラス、メソッドの命名パターン
+- **directory-structure.md**: 各プロジェクトの標準的なフォルダ構成
+- **coding-standards.md**: コーディング規約とベストプラクティス
+- **testing-strategy.md**: ユニットテスト、統合テストの方針
+
+### 📦 Release Strategy (準備中)
+
+リリースとバージョン管理の戦略
+
+- **versioning.md**: セマンティックバージョニングの運用方法
+- **packaging.md**: NuGetパッケージの作成と配布プロセス
+- **compatibility.md**: 後方互換性の維持と破壊的変更の管理
+
+### 🔧 Project-Specific Knowledge (準備中)
+
+各プロジェクト固有のドキュメント
+
+- **mcp-core/**: MCPプロトコル実装の詳細仕様
+- **mcp-services/**: 外部サービス統合のベストプラクティス
+- **mcp-tools/**: ツール統合のガイドライン
+- **mcp-processes/**: AI統合プロセスの実装パターン
+- **voice-engines/**: 音声エンジン統合の技術仕様
+
+## Usage in AI Tools
+
+### Cursor / Cline
+
+```
+# Raw URL（推奨・常に最新版）
+@Docs https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/llms.txt
+
+# ローカルのサブモジュール
+@Docs .submodules/ateliers-ai-mcp-projectbase/llms.txt
+```
+
+### GitHub Copilot
+
+サブモジュールとして追加後、該当ディレクトリ内のファイルを開くことでコンテキストとして認識されます。
+
+主要ファイル例：
+- `architecture/overview.md`
+- `design-principles/core-concepts.md`
+- `development-guidelines/naming-conventions.md`
+
+### Claude
+
+会話の最初に以下を貼り付けてください：
+
+```
+このプロジェクトのナレッジベースに従ってください：
+https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/llms.txt
+```
+
+## Related Repositories
+
+- [ateliers-ai-assistants](https://github.com/yuu-git/ateliers-ai-assistants): AI生成ガイドラインとトレーニングサンプル
+- [ateliers-ai-mcp-core](https://github.com/yuu-git/ateliers-ai-mcp-core): MCPコア実装
+- [ateliers-ai-mcp-services](https://github.com/yuu-git/ateliers-ai-mcp-services): MCPサービス実装
+- [ateliers-ai-mcp-tools](https://github.com/yuu-git/ateliers-ai-mcp-tools): MCPツール実装
+- [ateliers-ai-mcp-processes](https://github.com/yuu-git/ateliers-ai-mcp-processes): MCPプロセス実装
+- [ateliers-ai-mcpserver](https://github.com/yuu-git/ateliers-ai-mcpserver): MCPサーバー実装
+- [ateliers-voice-engines](https://github.com/yuu-git/ateliers-voice-engines): 音声エンジン実装
+
+## Contributing
+
+プロジェクトナレッジの追加・更新は歓迎します：
+- 設計ドキュメントの追加・改善
+- ベストプラクティスの共有
+- リファクタリング指針の提案
+
+## License
+
+MIT License - 詳細は [LICENSE](LICENSE) を参照
+
+## Maintenance
+
+このllms.txtファイルは、プロジェクトの成長に合わせて継続的に更新されます。
+具体的なドキュメントが追加されたら、該当セクションの（準備中）を削除し、詳細な説明を追加します。
