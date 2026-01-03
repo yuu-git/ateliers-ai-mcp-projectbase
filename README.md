@@ -15,6 +15,12 @@ AI-DDD（AI駆動ドキュメント駆動開発）を実現するための設計
 
 最も簡単な方法です。1コマンドでセットアップが完了します。
 
+**PowerShell (Windows推奨):**
+```powershell
+irm https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/scripts/init-for-project.ps1 | iex
+```
+
+**Bash (Linux/Mac):**
 ```bash
 curl -fsSL https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/scripts/init-for-project.sh | bash
 ```
@@ -54,6 +60,12 @@ chmod +x scripts/update-project-knowledge.sh
 
 必要な時に手動で更新します。
 
+**PowerShell (Windows):**
+```powershell
+.\scripts\update-project-knowledge.ps1
+```
+
+**Bash (Linux/Mac):**
 ```bash
 ./scripts/update-project-knowledge.sh
 ```
