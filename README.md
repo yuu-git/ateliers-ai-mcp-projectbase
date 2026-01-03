@@ -234,7 +234,7 @@ ateliers-ai-mcp-projectbase/
 
 ## 📄 ライセンス
 
-このリポジトリは [MIT License](LICENSE) のもとで公開されています。
+このリポジトリは [MIT License](https://github.com/yuu-git/ateliers-ai-mcp-projectbase/blob/master/LICENSE) のもとで公開されています。
 
 ## 🔗 関連リポジトリ
 
