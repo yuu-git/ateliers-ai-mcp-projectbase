@@ -245,7 +245,7 @@ ateliers-ai-mcp-projectbase/
 
 ## 🔗 関連リポジトリ
 
-- [ateliers-ai-assistants](https://github.com/yuu-git/ateliers-ai-assistants): AI生成ガイドラインとトレーニングサンプル
+- [ateliers-knowledge](https://github.com/yuu-git/ateliers-knowledge): AI生成ガイドラインとトレーニングサンプル
 - [ateliers-ai-mcp-core](https://github.com/yuu-git/ateliers-ai-mcp-core): MCPコア実装
 - [ateliers-ai-mcpserver](https://github.com/yuu-git/ateliers-ai-mcpserver): MCPサーバー実装
 

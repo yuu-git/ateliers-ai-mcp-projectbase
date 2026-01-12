@@ -201,7 +201,7 @@ https://raw.githubusercontent.com/yuu-git/ateliers-ai-mcp-projectbase/master/llm
 
 ## Related Repositories
 
-- [ateliers-ai-assistants](https://github.com/yuu-git/ateliers-ai-assistants): AI生成ガイドラインとトレーニングサンプル
+- [ateliers-knowledge](https://github.com/yuu-git/ateliers-knowledge): AI生成ガイドラインとトレーニングサンプル
 - [ateliers-ai-mcp-core](https://github.com/yuu-git/ateliers-ai-mcp-core): MCPコア実装
 - [ateliers-ai-mcp-services](https://github.com/yuu-git/ateliers-ai-mcp-services): MCPサービス実装
 - [ateliers-ai-mcp-tools](https://github.com/yuu-git/ateliers-ai-mcp-tools): MCPツール実装
