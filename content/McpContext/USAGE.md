@@ -1,17 +1,16 @@
-@
 ---
 ---
 
-# MCP ���s�R���e�L�X�g�g�p���@
+# MCP 実行コンテキスト使用方法
 
-## �T�v
+## 概要
 
-MCP ���s�R���e�L�X�g�́A�c�[���̎��s��ǐՂ��邽�߂̎d�g�݂ł��B
-�e�c�[���̎��s�ɂ͈�ӂ̑���ID�iCorrelationId�j�����蓖�Ă��A�c�[�����Ƌ��ɊǗ�����܂��B
+MCP 実行コンテキストは、ツールの実行を追跡するための仕組みです。
+各ツールの実行には一意の相関ID（CorrelationId）が割り当てられ、ツール名と共に管理されます。
 
-## ��{�I�Ȏg����
+## 基本的な使い方
 
-### 1. DI �R���e�i�ւ̓o�^
+### 1. DI コンテナへの登録
 
 ```csharp
 using Ateliers.Ai.Mcp.DependencyInjection;
@@ -19,13 +18,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-// MCP ���s�R���e�L�X�g��o�^
+// MCP 実行コンテキストを登録
 services.AddMcpExecutionContext();
 
 var serviceProvider = services.BuildServiceProvider();
 ```
 
-### 2. �R���X�g���N�^�C���W�F�N�V����
+### 2. コンストラクタインジェクション
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -42,44 +41,44 @@ public class MyMcpTool
 
     public async Task ExecuteAsync()
     {
-        // �c�[���X�R�[�v���J�n
+        // ツールスコープを開始
         using var scope = _context.BeginTool("my.tool");
         
-        // ����ID�ƃc�[�����������ݒ肳���
+        // 相関IDとツール名が自動設定される
         Console.WriteLine($"CorrelationId: {_context.CorrelationId}");
         Console.WriteLine($"ToolName: {_context.ToolName}");
         
-        // �c�[������
+        // ツール処理
         await ProcessAsync();
     }
     
     private async Task ProcessAsync()
     {
-        // ���̃��\�b�h���ł������R���e�L�X�g�����p�\
+        // このメソッド内でも同じコンテキストが利用可能
         Console.WriteLine($"Still in context: {_context.CorrelationId}");
         await Task.Delay(100);
     }
 }
 ```
 
-## �X�R�[�v�̊Ǘ�
+## スコープの管理
 
-### �c�[���X�R�[�v
+### ツールスコープ
 
 ```csharp
 public async Task ExecuteToolAsync()
 {
-    // using �X�e�[�g�����g�ŃX�R�[�v���Ǘ�
+    // using ステートメントでスコープを管理
     using var scope = _context.BeginTool("notion.sync");
     
-    // �X�R�[�v���̏���
+    // スコープ内の処理
     await SyncNotionAsync();
     
-    // �X�R�[�v�I�����Ɏ����I�ɃN���[���A�b�v
+    // スコープ終了時に自動的にクリーンアップ
 }
 ```
 
-### �l�X�g�����X�R�[�v
+### ネストしたスコープ
 
 ```csharp
 public async Task ParentToolAsync()
@@ -88,10 +87,10 @@ public async Task ParentToolAsync()
     Console.WriteLine($"Parent CorrelationId: {_context.CorrelationId}");
     Console.WriteLine($"Parent ToolName: {_context.ToolName}");
     
-    // �q�c�[�����Ăяo��
+    // 子ツールを呼び出し
     await ChildToolAsync();
     
-    // �e�X�R�[�v�ɖ߂�
+    // 親スコープに戻る
     Console.WriteLine($"Back to parent: {_context.CorrelationId}");
 }
 
@@ -105,9 +104,9 @@ private async Task ChildToolAsync()
 }
 ```
 
-## ����ID�̊��p
+## 相関IDの活用
 
-### ���O�Ƃ̓���
+### ログとの統合
 
 ```csharp
 public class NotionSyncTool
@@ -125,7 +124,7 @@ public class NotionSyncTool
     {
         using var scope = _context.BeginTool("notion.sync");
         
-        // ���O�Ɏ����I�ɑ���ID�ƃc�[�������t�^�����
+        // ログに自動的に相関IDとツール名が付与される
         _logger.Info("MCP.Start");  // [CID:abc-123] [Tool:notion.sync] MCP.Start
         
         try
@@ -142,7 +141,7 @@ public class NotionSyncTool
 }
 ```
 
-### HTTP���N�G�X�g�w�b�_�[�ւ̒ǉ�
+### HTTPリクエストヘッダーへの追加
 
 ```csharp
 public class ApiClient
@@ -160,7 +159,7 @@ public class ApiClient
     {
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         
-        // ����ID���w�b�_�[�ɒǉ��i���U�g���[�V���O�j
+        // 相関IDをヘッダーに追加（分散トレーシング）
         if (!string.IsNullOrEmpty(_context.CorrelationId))
         {
             request.Headers.Add("X-Correlation-Id", _context.CorrelationId);
@@ -172,32 +171,32 @@ public class ApiClient
 }
 ```
 
-## �����c�[���̎��s
+## 複数ツールの実行
 
-### �������s
+### 順次実行
 
 ```csharp
 public async Task ExecuteMultipleToolsAsync()
 {
-    // �c�[��1
+    // ツール1
     using (var scope1 = _context.BeginTool("tool1"))
     {
         _logger.Info("Executing tool1");
         await Task.Delay(100);
     }
     
-    // �c�[��2
+    // ツール2
     using (var scope2 = _context.BeginTool("tool2"))
     {
         _logger.Info("Executing tool2");
         await Task.Delay(100);
     }
     
-    // �e�c�[���͓Ɨ���������ID������
+    // 各ツールは独立した相関IDを持つ
 }
 ```
 
-### ������s
+### 並列実行
 
 ```csharp
 public async Task ExecuteToolsInParallelAsync()
@@ -214,16 +213,16 @@ public async Task ExecuteToolsInParallelAsync()
 
 private async Task ExecuteToolAsync(string toolName)
 {
-    // �e�^�X�N�œƗ������R���e�L�X�g������
+    // 各タスクで独立したコンテキストを持つ
     using var scope = _context.BeginTool(toolName);
     _logger.Info($"Executing {toolName}");
     await Task.Delay(100);
 }
 ```
 
-## ���s�R���e�L�X�g�̎擾
+## 実行コンテキストの取得
 
-### �ÓI�A�N�Z�X
+### 静的アクセス
 
 ```csharp
 using Ateliers.Ai.Mcp.Context;
@@ -232,7 +231,7 @@ public class MyService
 {
     public void DoSomething()
     {
-        // �ÓI�v���p�e�B���猻�݂̃R���e�L�X�g���擾
+        // 静的プロパティから現在のコンテキストを取得
         var current = McpExecutionContext.Current;
         if (current != null)
         {
@@ -243,14 +242,14 @@ public class MyService
 }
 ```
 
-### DI �o�R�ł̃A�N�Z�X�i�����j
+### DI 経由でのアクセス（推奨）
 
 ```csharp
 public class MyService
 {
     private readonly IMcpExecutionContext _context;
 
-    // �R���X�g���N�^�C���W�F�N�V�������g�p�i�����j
+    // コンストラクタインジェクションを使用（推奨）
     public MyService(IMcpExecutionContext context)
     {
         _context = context;
@@ -264,9 +263,9 @@ public class MyService
 }
 ```
 
-## �e�X�g�ł̎g�p��
+## テストでの使用例
 
-### ��{�I�ȃe�X�g
+### 基本的なテスト
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -326,7 +325,7 @@ public class McpExecutionContextTests
                 Assert.NotEqual(parentCorrelationId, childCorrelationId);
             }
             
-            // �e�X�R�[�v�ɖ߂�
+            // 親スコープに戻る
             Assert.Equal(parentCorrelationId, context.CorrelationId);
             Assert.Equal("parent.tool", context.ToolName);
         }
@@ -344,7 +343,7 @@ public class McpExecutionContextTests
         // Act
         using var scope = context.BeginTool("test.tool");
         
-        // �ÓI�v���p�e�B����A�N�Z�X
+        // 静的プロパティからアクセス
         var current = McpExecutionContext.Current;
         
         // Assert
@@ -355,7 +354,7 @@ public class McpExecutionContextTests
 }
 ```
 
-### �����e�X�g
+### 統合テスト
 
 ```csharp
 public class NotionSyncToolIntegrationTests
@@ -392,17 +391,17 @@ public class NotionSyncToolIntegrationTests
 }
 ```
 
-## �x�X�g�v���N�e�B�X
+## ベストプラクティス
 
-1. **�K�� using �X�e�[�g�����g���g�p����**: �X�R�[�v�̓K�؂ȊǗ�
-2. **DI �ŃR���e�L�X�g�𒍓�����**: �ÓI�A�N�Z�X��������
-3. **�X�R�[�v�͒Z���ۂ�**: �c�[���̎��s�P�ʂŃX�R�[�v���쐬
-4. **����ID�����O�Ɋ��p����**: �g���[�T�r���e�B�̌���
-5. **�l�X�g�����X�R�[�v�����p����**: ���G�ȏ����̊K�w�Ǘ�
+1. **必ず using ステートメントを使用する**: スコープの適切な管理
+2. **DI でコンテキストを注入する**: 静的アクセスよりも推奨
+3. **スコープは短く保つ**: ツールの実行単位でスコープを作成
+4. **相関IDをログに活用する**: トレーサビリティの向上
+5. **ネストしたスコープを活用する**: 複雑な処理の階層管理
 
-## ���x�Ȏg�p��
+## 高度な使用例
 
-### �J�X�^���v���p�e�B�̒ǉ�
+### カスタムプロパティの追加
 
 ```csharp
 public class ExtendedMcpExecutionContext : McpExecutionContext
@@ -422,7 +421,7 @@ public class ExtendedMcpExecutionContext : McpExecutionContext
     }
 }
 
-// DI �o�^
+// DI 登録
 services.AddScoped<IMcpExecutionContext>(provider =>
     new ExtendedMcpExecutionContext(
         Guid.NewGuid().ToString(),
@@ -431,7 +430,7 @@ services.AddScoped<IMcpExecutionContext>(provider =>
         sessionId: "session456"));
 ```
 
-### �~�h���E�F�A�Ƃ̓����iASP.NET Core�j
+### ミドルウェアとの統合（ASP.NET Core）
 
 ```csharp
 public class McpContextMiddleware
@@ -448,13 +447,13 @@ public class McpContextMiddleware
         var mcpContext = context.RequestServices
             .GetRequiredService<IMcpExecutionContext>();
 
-        // HTTP�w�b�_�[���瑊��ID���擾�i���݂���ꍇ�j
+        // HTTPヘッダーから相関IDを取得（存在する場合）
         var correlationId = context.Request.Headers["X-Correlation-Id"].FirstOrDefault()
             ?? Guid.NewGuid().ToString();
 
         using var scope = mcpContext.BeginTool(context.Request.Path);
         
-        // ���X�|���X�w�b�_�[�ɑ���ID��ǉ�
+        // レスポンスヘッダーに相関IDを追加
         context.Response.Headers.Append("X-Correlation-Id", correlationId);
 
         await _next(context);
@@ -465,31 +464,31 @@ public class McpContextMiddleware
 app.UseMiddleware<McpContextMiddleware>();
 ```
 
-## �g���u���V���[�e�B���O
+## トラブルシューティング
 
-### �R���e�L�X�g�� null �̏ꍇ
+### コンテキストが null の場合
 
 ```csharp
-// AddMcpExecutionContext ���o�^����Ă��邩�m�F
+// AddMcpExecutionContext が登録されているか確認
 services.AddMcpExecutionContext();
 
-// �X�R�[�v���쐬����Ă��邩�m�F
+// スコープが作成されているか確認
 using var scope = context.BeginTool("tool.name");
 ```
 
-### ����ID����v���Ȃ��ꍇ
+### 相関IDが一致しない場合
 
 ```csharp
-// �񓯊������� ExecutionContext �������p����Ȃ��ꍇ
-// ConfigureAwait(false) ���g�p���Ă��Ȃ����m�F
+// 非同期処理で ExecutionContext が引き継がれない場合
+// ConfigureAwait(false) を使用していないか確認
 await Task.Delay(100); // OK
-await Task.Delay(100).ConfigureAwait(false); // NG: �R���e�L�X�g��������
+await Task.Delay(100).ConfigureAwait(false); // NG: コンテキストが失われる
 ```
 
-### �l�X�g�����X�R�[�v�����܂����삵�Ȃ��ꍇ
+### ネストしたスコープがうまく動作しない場合
 
 ```csharp
-// using �X�e�[�g�����g�𐳂����g�p���Ă��邩�m�F
+// using ステートメントを正しく使用しているか確認
 using (var scope1 = context.BeginTool("tool1"))
 {
     using (var scope2 = context.BeginTool("tool2"))
@@ -498,12 +497,12 @@ using (var scope1 = context.BeginTool("tool1"))
     }
 }
 
-// �ȉ��� NG: scope ���K�؂ɕ����Ȃ�
+// 以下は NG: scope が適切に閉じられない
 var scope1 = context.BeginTool("tool1");
 var scope2 = context.BeginTool("tool2");
 ```
 
-## �Q�l�����N
+## 参考リンク
 
 - [MCP Logging USAGE](../logging/USAGE.md)
 - [Ateliers.Core ExecutionContext](../../../Ateliers.Core/Context/)

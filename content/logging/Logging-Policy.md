@@ -1,4 +1,7 @@
-﻿# MCP Logging Policy
+---
+---
+
+# MCP Logging Policy
 
 ## 1. 目的（Purpose）
 

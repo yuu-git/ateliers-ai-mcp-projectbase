@@ -1,12 +1,11 @@
-@
 ---
 ---
 
-# MCP ���M���O�g�p���@
+# MCP ロギング使用方法
 
-## ��{�I�Ȏg����
+## 基本的な使い方
 
-### 1. DI �R���e�i�ւ̓o�^
+### 1. DI コンテナへの登録
 
 ```csharp
 using Ateliers.Ai.Mcp.DependencyInjection;
@@ -15,22 +14,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-// MCP ���s�R���e�L�X�g��o�^
+// MCP 実行コンテキストを登録
 services.AddMcpExecutionContext();
 
-// MCP ���M���O��o�^
+// MCP ロギングを登録
 services.AddMcpLogging(logging =>
 {
     logging
-        .SetMinimumLevel(LogLevel.Information)    // �ŏ����O���x��
-        .AddConsole()                             // �R���\�[���o��
-        .AddFile();                               // �t�@�C���o�́i�f�t�H���g: ./logs/app/mcp-*.log�j
+        .SetMinimumLevel(LogLevel.Information)    // 最小ログレベル
+        .AddConsole()                             // コンソール出力
+        .AddFile();                               // ファイル出力（デフォルト: ./logs/app/mcp-*.log）
 });
 
 var serviceProvider = services.BuildServiceProvider();
 ```
 
-### 2. �R���X�g���N�^�C���W�F�N�V����
+### 2. コンストラクタインジェクション
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -49,7 +48,7 @@ public class NotionSyncTool
 
     public async Task ExecuteAsync()
     {
-        // �c�[���X�R�[�v���J�n�i����ID�ƃc�[�����������Ǘ��j
+        // ツールスコープを開始（相関IDとツール名を自動管理）
         using var scope = _context.BeginTool("notion.sync");
         
         _logger.Info("MCP.Start");
@@ -70,25 +69,25 @@ public class NotionSyncTool
     private async Task SyncNotionAsync()
     {
         _logger.Info("Syncing Notion data...");
-        // ��������
+        // 同期処理
         await Task.Delay(100);
         _logger.Info("Sync completed");
     }
 }
 ```
 
-## ���O���x��
+## ログレベル
 
 ```csharp
-_logger.Trace("�g���[�X���");              // LogLevel.Trace
-_logger.Debug("�f�o�b�O���");              // LogLevel.Debug
-_logger.Info("��񃁃b�Z�[�W");             // LogLevel.Information
-_logger.Warn("�x�����b�Z�[�W");             // LogLevel.Warning
-_logger.Error("�G���[���b�Z�[�W", ex);      // LogLevel.Error
-_logger.Critical("�d��ȃG���[", ex);       // LogLevel.Critical
+_logger.Trace("トレース情報");              // LogLevel.Trace
+_logger.Debug("デバッグ情報");              // LogLevel.Debug
+_logger.Info("情報メッセージ");             // LogLevel.Information
+_logger.Warn("警告メッセージ");             // LogLevel.Warning
+_logger.Error("エラーメッセージ", ex);      // LogLevel.Error
+_logger.Critical("重大なエラー", ex);       // LogLevel.Critical
 ```
 
-## ���O�o�̓t�H�[�}�b�g
+## ログ出力フォーマット
 
 ```
 [2025-01-23T10:00:00.0000000Z] [Information] [MCP] [CID:abc-123] [Tool:notion.sync] MCP.Start
@@ -98,34 +97,34 @@ _logger.Critical("�d��ȃG���[", ex);       // LogLevel.Critical
 [2025-01-23T10:00:04.0000000Z] [Information] [MCP] [CID:abc-123] [Tool:notion.sync] MCP.Success
 ```
 
-�t�H�[�}�b�g�ڍׁF
-- `[Timestamp]`: ISO 8601 �`���̃^�C���X�^���v�iUTC�j
-- `[LogLevel]`: ���O���x��
-- `[MCP]`: �J�e�S���i�����ݒ�j
-- `[CID:xxx]`: ����ID�i�����ݒ�j
-- `[Tool:xxx]`: �c�[�����iBeginTool �Őݒ�j
-- ���b�Z�[�W�{��
+フォーマット詳細：
+- `[Timestamp]`: ISO 8601 形式のタイムスタンプ（UTC）
+- `[LogLevel]`: ログレベル
+- `[MCP]`: カテゴリ（自動設定）
+- `[CID:xxx]`: 相関ID（自動設定）
+- `[Tool:xxx]`: ツール名（BeginTool で設定）
+- メッセージ本文
 
-## MCP ���s�R���e�L�X�g�̎g����
+## MCP 実行コンテキストの使い方
 
-### �c�[���X�R�[�v�̍쐬
+### ツールスコープの作成
 
 ```csharp
 public async Task ExecuteToolAsync(string toolName)
 {
-    // �c�[���X�R�[�v���J�n�i�V��������ID�ƃc�[�������ݒ肳���j
+    // ツールスコープを開始（新しい相関IDとツール名が設定される）
     using var scope = _context.BeginTool(toolName);
     
     _logger.Info($"MCP.Start tool={toolName}");
     
-    // ���̃X�R�[�v���̂��ׂẴ��O�ɓ�������ID�ƃc�[�������t�^�����
+    // このスコープ内のすべてのログに同じ相関IDとツール名が付与される
     await ProcessToolAsync();
     
     _logger.Info($"MCP.Success tool={toolName}");
 }
 ```
 
-### ����ID�ƃc�[�����̎擾
+### 相関IDとツール名の取得
 
 ```csharp
 public void LogContextInfo()
@@ -137,28 +136,28 @@ public void LogContextInfo()
 }
 ```
 
-## MCP ���M���O�|���V�[
+## MCP ロギングポリシー
 
-MCP �ł͈ȉ��̃��M���O�|���V�[�ɏ]���܂��F
+MCP では以下のロギングポリシーに従います：
 
-1. **�K�{���O**:
-   - `MCP.Start`: �c�[�����s�J�n��
-   - `MCP.Success`: �c�[�����s������
-   - `MCP.Failed`: �c�[�����s���s��
+1. **必須ログ**:
+   - `MCP.Start`: ツール実行開始時
+   - `MCP.Success`: ツール実行成功時
+   - `MCP.Failed`: ツール実行失敗時
 
-2. **�������O**:
-   - �d�v�ȏ����̃X�e�b�v
-   - �O���T�[�r�X�ւ̃��N�G�X�g/���X�|���X
-   - �f�[�^�̕ϊ�/�ύX
+2. **推奨ログ**:
+   - 重要な処理のステップ
+   - 外部サービスへのリクエスト/レスポンス
+   - データの変換/変更
 
-3. **�֎~����**:
-   - �l���iPII�j�̃��O�o��
-   - �F�؃g�[�N��/�p�X���[�h�̃��O�o��
-   - ��ʃf�[�^�̏ڍ׃��O�iDebug ���x���ł�������j
+3. **禁止事項**:
+   - 個人情報（PII）のログ出力
+   - 認証トークン/パスワードのログ出力
+   - 大量データの詳細ログ（Debug レベルでも避ける）
 
-## ���O�̓ǂݎ��
+## ログの読み取り
 
-### ����ID�Ń��O��ǂݎ��
+### 相関IDでログを読み取る
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -196,7 +195,7 @@ public class LogReaderService
 
     public void ReadMcpLogs()
     {
-        // �J�e�S���Ńt�B���^�����O
+        // カテゴリでフィルタリング
         var mcpSession = _logReader.ReadByCategory("MCP");
         
         Console.WriteLine($"MCP Logs: {mcpSession.Entries.Count} entries");
@@ -208,7 +207,7 @@ public class LogReaderService
 
     public void ReadToolLogs(string correlationId, string category = "MCP")
     {
-        // ����ID�ƃJ�e�S���̗����Ńt�B���^�����O
+        // 相関IDとカテゴリの両方でフィルタリング
         var session = _logReader.ReadByCorrelationIdAndCategory(correlationId, category);
         
         Console.WriteLine($"Tool Logs: {session.CorrelationId} ({session.Entries.Count} entries)");
@@ -220,35 +219,35 @@ public class LogReaderService
 }
 ```
 
-### DI �ւ̓o�^
+### DI への登録
 
 ```csharp
-// �t�@�C���x�[�X�̃��O���[�_�[
+// ファイルベースのログリーダー
 services.AddSingleton<IMcpLogReader>(provider =>
     new FileMcpLogger(new McpLoggerOptions
     {
         LogDirectory = "./logs/app"
     }));
 
-// �܂��́A�C�����������O���[�_�[�i�e�X�g�p�j
+// または、インメモリログリーダー（テスト用）
 services.AddSingleton<IMcpLogReader>(provider =>
     new InMemoryMcpLogger(new McpLoggerOptions()));
 ```
 
-## �������K�[�̑g�ݍ��킹
+## 複数ロガーの組み合わせ
 
 ```csharp
 services.AddMcpLogging(logging =>
 {
     logging
         .SetMinimumLevel(LogLevel.Debug)
-        .AddConsole()                                  // �R���\�[���ɏo��
-        .AddFile("./logs/mcp")                        // �t�@�C���ɏo��
-        .AddInMemory(out var memoryLogger);           // �������ɕێ��i�f�o�b�O/�e�X�g�p�j
+        .AddConsole()                                  // コンソールに出力
+        .AddFile("./logs/mcp")                        // ファイルに出力
+        .AddInMemory(out var memoryLogger);           // メモリに保持（デバッグ/テスト用）
 });
 ```
 
-## �e�X�g�ł̎g�p��
+## テストでの使用例
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -282,7 +281,7 @@ public class NotionSyncToolTests
         await tool.ExecuteAsync();
         
         // Assert
-        Assert.True(memoryLogger.Entries.Count >= 2); // �Œ�� Start �� Success
+        Assert.True(memoryLogger.Entries.Count >= 2); // 最低限 Start と Success
         Assert.Contains(memoryLogger.Entries, e => e.Message == "MCP.Start");
         Assert.Contains(memoryLogger.Entries, e => e.Message == "MCP.Success");
         Assert.All(memoryLogger.Entries, e =>
@@ -328,17 +327,17 @@ public class NotionSyncToolTests
 }
 ```
 
-## Production ���ł̐ݒ��
+## Production 環境での設定例
 
 ```csharp
 services.AddMcpLogging(logging =>
 {
     logging
-        .SetMinimumLevel(LogLevel.Information)  // Production �ł� Information �ȏ�
-        .AddFile("./logs/mcp");                // �t�@�C���̂݁i�R���\�[���͕s�v�j
+        .SetMinimumLevel(LogLevel.Information)  // Production では Information 以上
+        .AddFile("./logs/mcp");                // ファイルのみ（コンソールは不要）
 });
 
-// ���O�ێ��|���V�[�̓K�p�i�N�����Ɏ��s�j
+// ログ保持ポリシーの適用（起動時に実行）
 var policy = new LogRetentionPolicy
 {
     TraceRetention = TimeSpan.FromDays(1),
@@ -353,53 +352,53 @@ var cleaner = new LogRetentionCleaner("./logs/mcp", policy);
 cleaner.Clean();
 ```
 
-## �x�X�g�v���N�e�B�X
+## ベストプラクティス
 
-1. **�K�� BeginTool ���g�p����**: �c�[�����Ƒ���ID�������ݒ肳��܂�
-2. **MCP.Start / MCP.Success / MCP.Failed ���L�^����**: �c�[���̎��s�󋵂�ǐՂł��܂�
-3. **�K�؂ȃ��O���x�����g�p����**: 
-   - Debug: �J�����̂�
-   - Information: �ʏ�̏����t���[
-   - Warning: �\�����Ȃ��������\�ȏ�
-   - Error: �������s
-   - Critical: �T�[�r�X��~���x���̃G���[
-4. **��O�͕K�����O�ɋL�^����**: �X�^�b�N�g���[�X���ۑ�����܂�
-5. **�l�����L�^���Ȃ�**: GDPR ���̃R���v���C�A���X������
-6. **����ID�Ń��O��ǐՂ���**: ���̃f�o�b�O���e�ՂɂȂ�܂�
+1. **必ず BeginTool を使用する**: ツール名と相関IDが自動設定されます
+2. **MCP.Start / MCP.Success / MCP.Failed を記録する**: ツールの実行状況を追跡できます
+3. **適切なログレベルを使用する**: 
+   - Debug: 開発時のみ
+   - Information: 通常の処理フロー
+   - Warning: 予期しないが処理可能な状況
+   - Error: 処理失敗
+   - Critical: サービス停止レベルのエラー
+4. **例外は必ずログに記録する**: スタックトレースが保存されます
+5. **個人情報を記録しない**: GDPR 等のコンプライアンスを遵守
+6. **相関IDでログを追跡する**: 問題のデバッグが容易になります
 
-## �g���u���V���[�e�B���O
+## トラブルシューティング
 
-### �c�[�������L�^����Ȃ��ꍇ
+### ツール名が記録されない場合
 
 ```csharp
-// BeginTool ���Ăяo���Ă��邩�m�F
+// BeginTool を呼び出しているか確認
 using var scope = _context.BeginTool("tool.name");
 ```
 
-### ���O�t�@�C����������Ȃ��ꍇ
+### ログファイルが見つからない場合
 
 ```csharp
-// �f�t�H���g�̃��O�f�B���N�g�����m�F
+// デフォルトのログディレクトリを確認
 var logDir = Path.Combine(AppContext.BaseDirectory, "logs", "app");
 Console.WriteLine($"Log directory: {logDir}");
 
-// �܂��́A�����I�Ƀp�X���w��
+// または、明示的にパスを指定
 services.AddMcpLogging(logging =>
 {
     logging.AddFile(logDirectory: "C:\\logs\\mcp");
 });
 ```
 
-### ���O���ǂݎ��Ȃ��ꍇ
+### ログが読み取れない場合
 
 ```csharp
-// IMcpLogReader ���o�^����Ă��邩�m�F
+// IMcpLogReader が登録されているか確認
 services.AddSingleton<IMcpLogReader>(provider =>
     provider.GetRequiredService<IMcpLogger>() as IMcpLogReader
         ?? throw new InvalidOperationException("Logger does not implement IMcpLogReader"));
 ```
 
-## �Q�l�����N
+## 参考リンク
 
 - [MCP Logging Policy](../../docs/LoggingPolicy.md)
 - [Ateliers.Core Logging USAGE](../../../Ateliers.Core/Logging/USAGE.md)
