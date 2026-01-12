@@ -1,4 +1,8 @@
 ---
+title: MCP ロギング 実践ガイド
+sidebar_label: ロギング実践ガイド
+tags: [Ateliers.Ai.Mcp, Logging, ロギング, ガイド]
+description: Ateliers.Ai.Mcp のロギングの実践的な使用ガイドに関するドキュメント
 ---
 
 # MCP ロギング 実践ガイド

@@ -1,4 +1,8 @@
 ---
+title: MCP ロギング使用方法
+sidebar_label: MCP ロギング使用方法
+tags: [Ateliers.Ai.Mcp, Logging, ロギング, 使い方]
+description: Ateliers.Ai.Mcp のロギングの使用方法に関するガイド
 ---
 
 # MCP ロギング使用方法
