@@ -1,8 +1,12 @@
-# MCP ƒƒMƒ“ƒOŽg—p•û–@
+@
+---
+---
 
-## Šî–{“I‚ÈŽg‚¢•û
+# MCP ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½gï¿½pï¿½ï¿½ï¿½@
 
-### 1. DI ƒRƒ“ƒeƒi‚Ö‚Ì“o˜^
+## ï¿½ï¿½{ï¿½Iï¿½ÈŽgï¿½ï¿½ï¿½ï¿½
+
+### 1. DI ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½Ö‚Ì“oï¿½^
 
 ```csharp
 using Ateliers.Ai.Mcp.DependencyInjection;
@@ -11,22 +15,22 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-// MCP ŽÀsƒRƒ“ƒeƒLƒXƒg‚ð“o˜^
+// MCP ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½oï¿½^
 services.AddMcpExecutionContext();
 
-// MCP ƒƒMƒ“ƒO‚ð“o˜^
+// MCP ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½ï¿½oï¿½^
 services.AddMcpLogging(logging =>
 {
     logging
-        .SetMinimumLevel(LogLevel.Information)    // Å¬ƒƒOƒŒƒxƒ‹
-        .AddConsole()                             // ƒRƒ“ƒ\[ƒ‹o—Í
-        .AddFile();                               // ƒtƒ@ƒCƒ‹o—ÍiƒfƒtƒHƒ‹ƒg: ./logs/app/mcp-*.logj
+        .SetMinimumLevel(LogLevel.Information)    // ï¿½Åï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½xï¿½ï¿½
+        .AddConsole()                             // ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½oï¿½ï¿½
+        .AddFile();                               // ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½oï¿½Íiï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½g: ./logs/app/mcp-*.logï¿½j
 });
 
 var serviceProvider = services.BuildServiceProvider();
 ```
 
-### 2. ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“
+### 2. ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½Cï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -45,7 +49,7 @@ public class NotionSyncTool
 
     public async Task ExecuteAsync()
     {
-        // ƒc[ƒ‹ƒXƒR[ƒv‚ðŠJŽni‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ðŽ©“®ŠÇ—j
+        // ï¿½cï¿½[ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Jï¿½nï¿½iï¿½ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç—ï¿½ï¿½j
         using var scope = _context.BeginTool("notion.sync");
         
         _logger.Info("MCP.Start");
@@ -66,25 +70,25 @@ public class NotionSyncTool
     private async Task SyncNotionAsync()
     {
         _logger.Info("Syncing Notion data...");
-        // “¯Šúˆ—
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         await Task.Delay(100);
         _logger.Info("Sync completed");
     }
 }
 ```
 
-## ƒƒOƒŒƒxƒ‹
+## ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½xï¿½ï¿½
 
 ```csharp
-_logger.Trace("ƒgƒŒ[ƒXî•ñ");              // LogLevel.Trace
-_logger.Debug("ƒfƒoƒbƒOî•ñ");              // LogLevel.Debug
-_logger.Info("î•ñƒƒbƒZ[ƒW");             // LogLevel.Information
-_logger.Warn("ŒxƒƒbƒZ[ƒW");             // LogLevel.Warning
-_logger.Error("ƒGƒ‰[ƒƒbƒZ[ƒW", ex);      // LogLevel.Error
-_logger.Critical("d‘å‚ÈƒGƒ‰[", ex);       // LogLevel.Critical
+_logger.Trace("ï¿½gï¿½ï¿½ï¿½[ï¿½Xï¿½ï¿½ï¿½");              // LogLevel.Trace
+_logger.Debug("ï¿½fï¿½oï¿½bï¿½Oï¿½ï¿½ï¿½");              // LogLevel.Debug
+_logger.Info("ï¿½ï¿½ñƒƒbï¿½Zï¿½[ï¿½W");             // LogLevel.Information
+_logger.Warn("ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W");             // LogLevel.Warning
+_logger.Error("ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½W", ex);      // LogLevel.Error
+_logger.Critical("ï¿½dï¿½ï¿½ÈƒGï¿½ï¿½ï¿½[", ex);       // LogLevel.Critical
 ```
 
-## ƒƒOo—ÍƒtƒH[ƒ}ƒbƒg
+## ï¿½ï¿½ï¿½Oï¿½oï¿½Íƒtï¿½Hï¿½[ï¿½}ï¿½bï¿½g
 
 ```
 [2025-01-23T10:00:00.0000000Z] [Information] [MCP] [CID:abc-123] [Tool:notion.sync] MCP.Start
@@ -94,34 +98,34 @@ _logger.Critical("d‘å‚ÈƒGƒ‰[", ex);       // LogLevel.Critical
 [2025-01-23T10:00:04.0000000Z] [Information] [MCP] [CID:abc-123] [Tool:notion.sync] MCP.Success
 ```
 
-ƒtƒH[ƒ}ƒbƒgÚ×F
-- `[Timestamp]`: ISO 8601 Œ`Ž®‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒviUTCj
-- `[LogLevel]`: ƒƒOƒŒƒxƒ‹
-- `[MCP]`: ƒJƒeƒSƒŠiŽ©“®Ý’èj
-- `[CID:xxx]`: ‘ŠŠÖIDiŽ©“®Ý’èj
-- `[Tool:xxx]`: ƒc[ƒ‹–¼iBeginTool ‚ÅÝ’èj
-- ƒƒbƒZ[ƒW–{•¶
+ï¿½tï¿½Hï¿½[ï¿½}ï¿½bï¿½gï¿½Ú×F
+- `[Timestamp]`: ISO 8601 ï¿½`ï¿½ï¿½ï¿½Ìƒ^ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½vï¿½iUTCï¿½j
+- `[LogLevel]`: ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½xï¿½ï¿½
+- `[MCP]`: ï¿½Jï¿½eï¿½Sï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Ý’ï¿½j
+- `[CID:xxx]`: ï¿½ï¿½ï¿½ï¿½IDï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Ý’ï¿½j
+- `[Tool:xxx]`: ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½iBeginTool ï¿½ÅÝ’ï¿½j
+- ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½{ï¿½ï¿½
 
-## MCP ŽÀsƒRƒ“ƒeƒLƒXƒg‚ÌŽg‚¢•û
+## MCP ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ÌŽgï¿½ï¿½ï¿½ï¿½
 
-### ƒc[ƒ‹ƒXƒR[ƒv‚Ìì¬
+### ï¿½cï¿½[ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½Ìì¬
 
 ```csharp
 public async Task ExecuteToolAsync(string toolName)
 {
-    // ƒc[ƒ‹ƒXƒR[ƒv‚ðŠJŽniV‚µ‚¢‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ªÝ’è‚³‚ê‚éj
+    // ï¿½cï¿½[ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Jï¿½nï¿½iï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý’è‚³ï¿½ï¿½ï¿½j
     using var scope = _context.BeginTool(toolName);
     
     _logger.Info($"MCP.Start tool={toolName}");
     
-    // ‚±‚ÌƒXƒR[ƒv“à‚Ì‚·‚×‚Ä‚ÌƒƒO‚É“¯‚¶‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ª•t—^‚³‚ê‚é
+    // ï¿½ï¿½ï¿½ÌƒXï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Ì‚ï¿½ï¿½×‚Ä‚Ìƒï¿½ï¿½Oï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½
     await ProcessToolAsync();
     
     _logger.Info($"MCP.Success tool={toolName}");
 }
 ```
 
-### ‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ÌŽæ“¾
+### ï¿½ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ÌŽæ“¾
 
 ```csharp
 public void LogContextInfo()
@@ -133,28 +137,28 @@ public void LogContextInfo()
 }
 ```
 
-## MCP ƒƒMƒ“ƒOƒ|ƒŠƒV[
+## MCP ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½|ï¿½ï¿½ï¿½Vï¿½[
 
-MCP ‚Å‚ÍˆÈ‰º‚ÌƒƒMƒ“ƒOƒ|ƒŠƒV[‚É]‚¢‚Ü‚·F
+MCP ï¿½Å‚ÍˆÈ‰ï¿½ï¿½Ìƒï¿½ï¿½Mï¿½ï¿½ï¿½Oï¿½|ï¿½ï¿½ï¿½Vï¿½[ï¿½É]ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½F
 
-1. **•K{ƒƒO**:
-   - `MCP.Start`: ƒc[ƒ‹ŽÀsŠJŽnŽž
-   - `MCP.Success`: ƒc[ƒ‹ŽÀs¬Œ÷Žž
-   - `MCP.Failed`: ƒc[ƒ‹ŽÀsŽ¸”sŽž
+1. **ï¿½Kï¿½{ï¿½ï¿½ï¿½O**:
+   - `MCP.Start`: ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½Jï¿½nï¿½ï¿½
+   - `MCP.Success`: ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+   - `MCP.Failed`: ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½sï¿½ï¿½
 
-2. **„§ƒƒO**:
-   - d—v‚Èˆ—‚ÌƒXƒeƒbƒv
-   - ŠO•”ƒT[ƒrƒX‚Ö‚ÌƒŠƒNƒGƒXƒg/ƒŒƒXƒ|ƒ“ƒX
-   - ƒf[ƒ^‚Ì•ÏŠ·/•ÏX
+2. **ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O**:
+   - ï¿½dï¿½vï¿½Èï¿½ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½bï¿½v
+   - ï¿½Oï¿½ï¿½ï¿½Tï¿½[ï¿½rï¿½Xï¿½Ö‚Ìƒï¿½ï¿½Nï¿½Gï¿½Xï¿½g/ï¿½ï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½X
+   - ï¿½fï¿½[ï¿½^ï¿½Ì•ÏŠï¿½/ï¿½ÏX
 
-3. **‹ÖŽ~Ž–€**:
-   - ŒÂlî•ñiPIIj‚ÌƒƒOo—Í
-   - ”FØƒg[ƒNƒ“/ƒpƒXƒ[ƒh‚ÌƒƒOo—Í
-   - ‘å—Êƒf[ƒ^‚ÌÚ×ƒƒOiDebug ƒŒƒxƒ‹‚Å‚à”ð‚¯‚éj
+3. **ï¿½ÖŽ~ï¿½ï¿½ï¿½ï¿½**:
+   - ï¿½Âlï¿½ï¿½ï¿½iPIIï¿½jï¿½Ìƒï¿½ï¿½Oï¿½oï¿½ï¿½
+   - ï¿½Fï¿½Øƒgï¿½[ï¿½Nï¿½ï¿½/ï¿½pï¿½Xï¿½ï¿½ï¿½[ï¿½hï¿½Ìƒï¿½ï¿½Oï¿½oï¿½ï¿½
+   - ï¿½ï¿½Êƒfï¿½[ï¿½^ï¿½ÌÚ×ƒï¿½ï¿½Oï¿½iDebug ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
 
-## ƒƒO‚Ì“Ç‚ÝŽæ‚è
+## ï¿½ï¿½ï¿½Oï¿½Ì“Ç‚ÝŽï¿½ï¿½
 
-### ‘ŠŠÖID‚ÅƒƒO‚ð“Ç‚ÝŽæ‚é
+### ï¿½ï¿½ï¿½ï¿½IDï¿½Åƒï¿½ï¿½Oï¿½ï¿½Ç‚ÝŽï¿½ï¿½
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -192,7 +196,7 @@ public class LogReaderService
 
     public void ReadMcpLogs()
     {
-        // ƒJƒeƒSƒŠ‚ÅƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+        // ï¿½Jï¿½eï¿½Sï¿½ï¿½ï¿½Åƒtï¿½Bï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½O
         var mcpSession = _logReader.ReadByCategory("MCP");
         
         Console.WriteLine($"MCP Logs: {mcpSession.Entries.Count} entries");
@@ -204,7 +208,7 @@ public class LogReaderService
 
     public void ReadToolLogs(string correlationId, string category = "MCP")
     {
-        // ‘ŠŠÖID‚ÆƒJƒeƒSƒŠ‚Ì—¼•û‚ÅƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+        // ï¿½ï¿½ï¿½ï¿½IDï¿½ÆƒJï¿½eï¿½Sï¿½ï¿½ï¿½Ì—ï¿½ï¿½ï¿½ï¿½Åƒtï¿½Bï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½O
         var session = _logReader.ReadByCorrelationIdAndCategory(correlationId, category);
         
         Console.WriteLine($"Tool Logs: {session.CorrelationId} ({session.Entries.Count} entries)");
@@ -216,35 +220,35 @@ public class LogReaderService
 }
 ```
 
-### DI ‚Ö‚Ì“o˜^
+### DI ï¿½Ö‚Ì“oï¿½^
 
 ```csharp
-// ƒtƒ@ƒCƒ‹ƒx[ƒX‚ÌƒƒOƒŠ[ƒ_[
+// ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½xï¿½[ï¿½Xï¿½Ìƒï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½_ï¿½[
 services.AddSingleton<IMcpLogReader>(provider =>
     new FileMcpLogger(new McpLoggerOptions
     {
         LogDirectory = "./logs/app"
     }));
 
-// ‚Ü‚½‚ÍAƒCƒ“ƒƒ‚ƒŠƒƒOƒŠ[ƒ_[iƒeƒXƒg—pj
+// ï¿½Ü‚ï¿½ï¿½ÍAï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½_ï¿½[ï¿½iï¿½eï¿½Xï¿½gï¿½pï¿½j
 services.AddSingleton<IMcpLogReader>(provider =>
     new InMemoryMcpLogger(new McpLoggerOptions()));
 ```
 
-## •¡”ƒƒK[‚Ì‘g‚Ý‡‚í‚¹
+## ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½[ï¿½Ì‘gï¿½Ýï¿½ï¿½í‚¹
 
 ```csharp
 services.AddMcpLogging(logging =>
 {
     logging
         .SetMinimumLevel(LogLevel.Debug)
-        .AddConsole()                                  // ƒRƒ“ƒ\[ƒ‹‚Éo—Í
-        .AddFile("./logs/mcp")                        // ƒtƒ@ƒCƒ‹‚Éo—Í
-        .AddInMemory(out var memoryLogger);           // ƒƒ‚ƒŠ‚É•ÛŽiƒfƒoƒbƒO/ƒeƒXƒg—pj
+        .AddConsole()                                  // ï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½Éoï¿½ï¿½
+        .AddFile("./logs/mcp")                        // ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Éoï¿½ï¿½
+        .AddInMemory(out var memoryLogger);           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•ÛŽï¿½ï¿½iï¿½fï¿½oï¿½bï¿½O/ï¿½eï¿½Xï¿½gï¿½pï¿½j
 });
 ```
 
-## ƒeƒXƒg‚Å‚ÌŽg—p—á
+## ï¿½eï¿½Xï¿½gï¿½Å‚ÌŽgï¿½pï¿½ï¿½
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -278,7 +282,7 @@ public class NotionSyncToolTests
         await tool.ExecuteAsync();
         
         // Assert
-        Assert.True(memoryLogger.Entries.Count >= 2); // Å’áŒÀ Start ‚Æ Success
+        Assert.True(memoryLogger.Entries.Count >= 2); // ï¿½Å’ï¿½ï¿½ Start ï¿½ï¿½ Success
         Assert.Contains(memoryLogger.Entries, e => e.Message == "MCP.Start");
         Assert.Contains(memoryLogger.Entries, e => e.Message == "MCP.Success");
         Assert.All(memoryLogger.Entries, e =>
@@ -324,17 +328,17 @@ public class NotionSyncToolTests
 }
 ```
 
-## Production ŠÂ‹«‚Å‚ÌÝ’è—á
+## Production ï¿½Â‹ï¿½ï¿½Å‚ÌÝ’ï¿½ï¿½
 
 ```csharp
 services.AddMcpLogging(logging =>
 {
     logging
-        .SetMinimumLevel(LogLevel.Information)  // Production ‚Å‚Í Information ˆÈã
-        .AddFile("./logs/mcp");                // ƒtƒ@ƒCƒ‹‚Ì‚ÝiƒRƒ“ƒ\[ƒ‹‚Í•s—vj
+        .SetMinimumLevel(LogLevel.Information)  // Production ï¿½Å‚ï¿½ Information ï¿½Èï¿½
+        .AddFile("./logs/mcp");                // ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì‚Ýiï¿½Rï¿½ï¿½ï¿½\ï¿½[ï¿½ï¿½ï¿½Í•sï¿½vï¿½j
 });
 
-// ƒƒO•ÛŽƒ|ƒŠƒV[‚Ì“K—pi‹N“®Žž‚ÉŽÀsj
+// ï¿½ï¿½ï¿½Oï¿½ÛŽï¿½ï¿½|ï¿½ï¿½ï¿½Vï¿½[ï¿½Ì“Kï¿½pï¿½iï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ÉŽï¿½ï¿½sï¿½j
 var policy = new LogRetentionPolicy
 {
     TraceRetention = TimeSpan.FromDays(1),
@@ -349,53 +353,53 @@ var cleaner = new LogRetentionCleaner("./logs/mcp", policy);
 cleaner.Clean();
 ```
 
-## ƒxƒXƒgƒvƒ‰ƒNƒeƒBƒX
+## ï¿½xï¿½Xï¿½gï¿½vï¿½ï¿½ï¿½Nï¿½eï¿½Bï¿½X
 
-1. **•K‚¸ BeginTool ‚ðŽg—p‚·‚é**: ƒc[ƒ‹–¼‚Æ‘ŠŠÖID‚ªŽ©“®Ý’è‚³‚ê‚Ü‚·
-2. **MCP.Start / MCP.Success / MCP.Failed ‚ð‹L˜^‚·‚é**: ƒc[ƒ‹‚ÌŽÀsó‹µ‚ð’ÇÕ‚Å‚«‚Ü‚·
-3. **“KØ‚ÈƒƒOƒŒƒxƒ‹‚ðŽg—p‚·‚é**: 
-   - Debug: ŠJ”­Žž‚Ì‚Ý
-   - Information: ’Êí‚Ìˆ—ƒtƒ[
-   - Warning: —\Šú‚µ‚È‚¢‚ªˆ—‰Â”\‚Èó‹µ
-   - Error: ˆ—Ž¸”s
-   - Critical: ƒT[ƒrƒX’âŽ~ƒŒƒxƒ‹‚ÌƒGƒ‰[
-4. **—áŠO‚Í•K‚¸ƒƒO‚É‹L˜^‚·‚é**: ƒXƒ^ƒbƒNƒgƒŒ[ƒX‚ª•Û‘¶‚³‚ê‚Ü‚·
-5. **ŒÂlî•ñ‚ð‹L˜^‚µ‚È‚¢**: GDPR “™‚ÌƒRƒ“ƒvƒ‰ƒCƒAƒ“ƒX‚ð…Žç
-6. **‘ŠŠÖID‚ÅƒƒO‚ð’ÇÕ‚·‚é**: –â‘è‚ÌƒfƒoƒbƒO‚ª—eˆÕ‚É‚È‚è‚Ü‚·
+1. **ï¿½Kï¿½ï¿½ BeginTool ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½**: ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Æ‘ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý’è‚³ï¿½ï¿½Ü‚ï¿½
+2. **MCP.Start / MCP.Success / MCP.Failed ï¿½ï¿½ï¿½Lï¿½^ï¿½ï¿½ï¿½ï¿½**: ï¿½cï¿½[ï¿½ï¿½ï¿½ÌŽï¿½ï¿½sï¿½ó‹µ‚ï¿½ÇÕ‚Å‚ï¿½ï¿½Ü‚ï¿½
+3. **ï¿½Kï¿½Ø‚Èƒï¿½ï¿½Oï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½**: 
+   - Debug: ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½
+   - Information: ï¿½Êï¿½Ìï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[
+   - Warning: ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â”\ï¿½Èï¿½
+   - Error: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+   - Critical: ï¿½Tï¿½[ï¿½rï¿½Xï¿½ï¿½~ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ÌƒGï¿½ï¿½ï¿½[
+4. **ï¿½ï¿½Oï¿½Í•Kï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½É‹Lï¿½^ï¿½ï¿½ï¿½ï¿½**: ï¿½Xï¿½^ï¿½bï¿½Nï¿½gï¿½ï¿½ï¿½[ï¿½Xï¿½ï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½
+5. **ï¿½Âlï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½^ï¿½ï¿½ï¿½È‚ï¿½**: GDPR ï¿½ï¿½ï¿½ÌƒRï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½Aï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+6. **ï¿½ï¿½ï¿½ï¿½IDï¿½Åƒï¿½ï¿½Oï¿½ï¿½ÇÕ‚ï¿½ï¿½ï¿½**: ï¿½ï¿½ï¿½Ìƒfï¿½oï¿½bï¿½Oï¿½ï¿½ï¿½eï¿½Õ‚É‚È‚ï¿½Ü‚ï¿½
 
-## ƒgƒ‰ƒuƒ‹ƒVƒ…[ƒeƒBƒ“ƒO
+## ï¿½gï¿½ï¿½ï¿½uï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½[ï¿½eï¿½Bï¿½ï¿½ï¿½O
 
-### ƒc[ƒ‹–¼‚ª‹L˜^‚³‚ê‚È‚¢ê‡
+### ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½^ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡
 
 ```csharp
-// BeginTool ‚ðŒÄ‚Ño‚µ‚Ä‚¢‚é‚©Šm”F
+// BeginTool ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½mï¿½F
 using var scope = _context.BeginTool("tool.name");
 ```
 
-### ƒƒOƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢ê‡
+### ï¿½ï¿½ï¿½Oï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡
 
 ```csharp
-// ƒfƒtƒHƒ‹ƒg‚ÌƒƒOƒfƒBƒŒƒNƒgƒŠ‚ðŠm”F
+// ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ìƒï¿½ï¿½Oï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½mï¿½F
 var logDir = Path.Combine(AppContext.BaseDirectory, "logs", "app");
 Console.WriteLine($"Log directory: {logDir}");
 
-// ‚Ü‚½‚ÍA–¾Ž¦“I‚ÉƒpƒX‚ðŽw’è
+// ï¿½Ü‚ï¿½ï¿½ÍAï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½Éƒpï¿½Xï¿½ï¿½ï¿½wï¿½ï¿½
 services.AddMcpLogging(logging =>
 {
     logging.AddFile(logDirectory: "C:\\logs\\mcp");
 });
 ```
 
-### ƒƒO‚ª“Ç‚ÝŽæ‚ê‚È‚¢ê‡
+### ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ç‚ÝŽï¿½ï¿½È‚ï¿½ï¿½ê‡
 
 ```csharp
-// IMcpLogReader ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©Šm”F
+// IMcpLogReader ï¿½ï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½mï¿½F
 services.AddSingleton<IMcpLogReader>(provider =>
     provider.GetRequiredService<IMcpLogger>() as IMcpLogReader
         ?? throw new InvalidOperationException("Logger does not implement IMcpLogReader"));
 ```
 
-## ŽQlƒŠƒ“ƒN
+## ï¿½Qï¿½lï¿½ï¿½ï¿½ï¿½ï¿½N
 
 - [MCP Logging Policy](../../docs/LoggingPolicy.md)
 - [Ateliers.Core Logging USAGE](../../../Ateliers.Core/Logging/USAGE.md)
