@@ -1,17 +1,13 @@
-@
----
----
+# MCP ÀsƒRƒ“ƒeƒLƒXƒgg—p•û–@
 
-# MCP ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½gï¿½pï¿½ï¿½ï¿½@
+## ŠT—v
 
-## ï¿½Tï¿½v
+MCP ÀsƒRƒ“ƒeƒLƒXƒg‚ÍAƒc[ƒ‹‚ÌÀs‚ğ’ÇÕ‚·‚é‚½‚ß‚Ìd‘g‚İ‚Å‚·B
+Šeƒc[ƒ‹‚ÌÀs‚É‚ÍˆêˆÓ‚Ì‘ŠŠÖIDiCorrelationIdj‚ªŠ„‚è“–‚Ä‚ç‚êAƒc[ƒ‹–¼‚Æ‹¤‚ÉŠÇ—‚³‚ê‚Ü‚·B
 
-MCP ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ÍAï¿½cï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½sï¿½ï¿½ÇÕ‚ï¿½ï¿½é‚½ï¿½ß‚Ìdï¿½gï¿½İ‚Å‚ï¿½ï¿½B
-ï¿½eï¿½cï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½sï¿½É‚Íˆï¿½Ó‚Ì‘ï¿½ï¿½ï¿½IDï¿½iCorrelationIdï¿½jï¿½ï¿½ï¿½ï¿½ï¿½è“–ï¿½Ä‚ï¿½ï¿½Aï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Æ‹ï¿½ï¿½ÉŠÇ—ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B
+## Šî–{“I‚Èg‚¢•û
 
-## ï¿½ï¿½{ï¿½Iï¿½Ègï¿½ï¿½ï¿½ï¿½
-
-### 1. DI ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½Ö‚Ì“oï¿½^
+### 1. DI ƒRƒ“ƒeƒi‚Ö‚Ì“o˜^
 
 ```csharp
 using Ateliers.Ai.Mcp.DependencyInjection;
@@ -19,13 +15,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-// MCP ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½oï¿½^
+// MCP ÀsƒRƒ“ƒeƒLƒXƒg‚ğ“o˜^
 services.AddMcpExecutionContext();
 
 var serviceProvider = services.BuildServiceProvider();
 ```
 
-### 2. ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½Cï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½
+### 2. ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -42,44 +38,44 @@ public class MyMcpTool
 
     public async Task ExecuteAsync()
     {
-        // ï¿½cï¿½[ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Jï¿½n
+        // ƒc[ƒ‹ƒXƒR[ƒv‚ğŠJn
         using var scope = _context.BeginTool("my.tool");
         
-        // ï¿½ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ’è‚³ï¿½ï¿½ï¿½
+        // ‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ª©“®İ’è‚³‚ê‚é
         Console.WriteLine($"CorrelationId: {_context.CorrelationId}");
         Console.WriteLine($"ToolName: {_context.ToolName}");
         
-        // ï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ƒc[ƒ‹ˆ—
         await ProcessAsync();
     }
     
     private async Task ProcessAsync()
     {
-        // ï¿½ï¿½ï¿½Ìƒï¿½ï¿½\ï¿½bï¿½hï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Â”\
+        // ‚±‚Ìƒƒ\ƒbƒh“à‚Å‚à“¯‚¶ƒRƒ“ƒeƒLƒXƒg‚ª—˜—p‰Â”\
         Console.WriteLine($"Still in context: {_context.CorrelationId}");
         await Task.Delay(100);
     }
 }
 ```
 
-## ï¿½Xï¿½Rï¿½[ï¿½vï¿½ÌŠÇ—ï¿½
+## ƒXƒR[ƒv‚ÌŠÇ—
 
-### ï¿½cï¿½[ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½v
+### ƒc[ƒ‹ƒXƒR[ƒv
 
 ```csharp
 public async Task ExecuteToolAsync()
 {
-    // using ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ÅƒXï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Ç—ï¿½
+    // using ƒXƒe[ƒgƒƒ“ƒg‚ÅƒXƒR[ƒv‚ğŠÇ—
     using var scope = _context.BeginTool("notion.sync");
     
-    // ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
+    // ƒXƒR[ƒv“à‚Ìˆ—
     await SyncNotionAsync();
     
-    // ï¿½Xï¿½Rï¿½[ï¿½vï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½Iï¿½ÉƒNï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½bï¿½v
+    // ƒXƒR[ƒvI—¹‚É©“®“I‚ÉƒNƒŠ[ƒ“ƒAƒbƒv
 }
 ```
 
-### ï¿½lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½v
+### ƒlƒXƒg‚µ‚½ƒXƒR[ƒv
 
 ```csharp
 public async Task ParentToolAsync()
@@ -88,10 +84,10 @@ public async Task ParentToolAsync()
     Console.WriteLine($"Parent CorrelationId: {_context.CorrelationId}");
     Console.WriteLine($"Parent ToolName: {_context.ToolName}");
     
-    // ï¿½qï¿½cï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
+    // qƒc[ƒ‹‚ğŒÄ‚Ño‚µ
     await ChildToolAsync();
     
-    // ï¿½eï¿½Xï¿½Rï¿½[ï¿½vï¿½É–ß‚ï¿½
+    // eƒXƒR[ƒv‚É–ß‚é
     Console.WriteLine($"Back to parent: {_context.CorrelationId}");
 }
 
@@ -105,9 +101,9 @@ private async Task ChildToolAsync()
 }
 ```
 
-## ï¿½ï¿½ï¿½ï¿½IDï¿½ÌŠï¿½ï¿½p
+## ‘ŠŠÖID‚ÌŠˆ—p
 
-### ï¿½ï¿½ï¿½Oï¿½Æ‚Ì“ï¿½ï¿½ï¿½
+### ƒƒO‚Æ‚Ì“‡
 
 ```csharp
 public class NotionSyncTool
@@ -125,7 +121,7 @@ public class NotionSyncTool
     {
         using var scope = _context.BeginTool("notion.sync");
         
-        // ï¿½ï¿½ï¿½Oï¿½Éï¿½ï¿½ï¿½ï¿½Iï¿½É‘ï¿½ï¿½ï¿½IDï¿½Æƒcï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ƒƒO‚É©“®“I‚É‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ª•t—^‚³‚ê‚é
         _logger.Info("MCP.Start");  // [CID:abc-123] [Tool:notion.sync] MCP.Start
         
         try
@@ -142,7 +138,7 @@ public class NotionSyncTool
 }
 ```
 
-### HTTPï¿½ï¿½ï¿½Nï¿½Gï¿½Xï¿½gï¿½wï¿½bï¿½_ï¿½[ï¿½Ö‚Ì’Ç‰ï¿½
+### HTTPƒŠƒNƒGƒXƒgƒwƒbƒ_[‚Ö‚Ì’Ç‰Á
 
 ```csharp
 public class ApiClient
@@ -160,7 +156,7 @@ public class ApiClient
     {
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         
-        // ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½wï¿½bï¿½_ï¿½[ï¿½É’Ç‰ï¿½ï¿½iï¿½ï¿½ï¿½Uï¿½gï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½Oï¿½j
+        // ‘ŠŠÖID‚ğƒwƒbƒ_[‚É’Ç‰Ái•ªUƒgƒŒ[ƒVƒ“ƒOj
         if (!string.IsNullOrEmpty(_context.CorrelationId))
         {
             request.Headers.Add("X-Correlation-Id", _context.CorrelationId);
@@ -172,32 +168,32 @@ public class ApiClient
 }
 ```
 
-## ï¿½ï¿½ï¿½ï¿½ï¿½cï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½s
+## •¡”ƒc[ƒ‹‚ÌÀs
 
-### ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+### ‡ŸÀs
 
 ```csharp
 public async Task ExecuteMultipleToolsAsync()
 {
-    // ï¿½cï¿½[ï¿½ï¿½1
+    // ƒc[ƒ‹1
     using (var scope1 = _context.BeginTool("tool1"))
     {
         _logger.Info("Executing tool1");
         await Task.Delay(100);
     }
     
-    // ï¿½cï¿½[ï¿½ï¿½2
+    // ƒc[ƒ‹2
     using (var scope2 = _context.BeginTool("tool2"))
     {
         _logger.Info("Executing tool2");
         await Task.Delay(100);
     }
     
-    // ï¿½eï¿½cï¿½[ï¿½ï¿½ï¿½Í“Æ—ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // Šeƒc[ƒ‹‚Í“Æ—§‚µ‚½‘ŠŠÖID‚ğ‚Â
 }
 ```
 
-### ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+### •À—ñÀs
 
 ```csharp
 public async Task ExecuteToolsInParallelAsync()
@@ -214,16 +210,16 @@ public async Task ExecuteToolsInParallelAsync()
 
 private async Task ExecuteToolAsync(string toolName)
 {
-    // ï¿½eï¿½^ï¿½Xï¿½Nï¿½Å“Æ—ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // Šeƒ^ƒXƒN‚Å“Æ—§‚µ‚½ƒRƒ“ƒeƒLƒXƒg‚ğ‚Â
     using var scope = _context.BeginTool(toolName);
     _logger.Info($"Executing {toolName}");
     await Task.Delay(100);
 }
 ```
 
-## ï¿½ï¿½ï¿½sï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½Ìæ“¾
+## ÀsƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
 
-### ï¿½Ã“Iï¿½Aï¿½Nï¿½Zï¿½X
+### Ã“IƒAƒNƒZƒX
 
 ```csharp
 using Ateliers.Ai.Mcp.Context;
@@ -232,7 +228,7 @@ public class MyService
 {
     public void DoSomething()
     {
-        // ï¿½Ã“Iï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½ï¿½ï¿½çŒ»ï¿½İ‚ÌƒRï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½æ“¾
+        // Ã“IƒvƒƒpƒeƒB‚©‚çŒ»İ‚ÌƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
         var current = McpExecutionContext.Current;
         if (current != null)
         {
@@ -243,14 +239,14 @@ public class MyService
 }
 ```
 
-### DI ï¿½oï¿½Rï¿½Å‚ÌƒAï¿½Nï¿½Zï¿½Xï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
+### DI Œo—R‚Å‚ÌƒAƒNƒZƒXi„§j
 
 ```csharp
 public class MyService
 {
     private readonly IMcpExecutionContext _context;
 
-    // ï¿½Rï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½Cï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
+    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğg—pi„§j
     public MyService(IMcpExecutionContext context)
     {
         _context = context;
@@ -264,9 +260,9 @@ public class MyService
 }
 ```
 
-## ï¿½eï¿½Xï¿½gï¿½Å‚Ìgï¿½pï¿½ï¿½
+## ƒeƒXƒg‚Å‚Ìg—p—á
 
-### ï¿½ï¿½{ï¿½Iï¿½Èƒeï¿½Xï¿½g
+### Šî–{“I‚ÈƒeƒXƒg
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -326,7 +322,7 @@ public class McpExecutionContextTests
                 Assert.NotEqual(parentCorrelationId, childCorrelationId);
             }
             
-            // ï¿½eï¿½Xï¿½Rï¿½[ï¿½vï¿½É–ß‚ï¿½
+            // eƒXƒR[ƒv‚É–ß‚é
             Assert.Equal(parentCorrelationId, context.CorrelationId);
             Assert.Equal("parent.tool", context.ToolName);
         }
@@ -344,7 +340,7 @@ public class McpExecutionContextTests
         // Act
         using var scope = context.BeginTool("test.tool");
         
-        // ï¿½Ã“Iï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½ï¿½ï¿½ï¿½Aï¿½Nï¿½Zï¿½X
+        // Ã“IƒvƒƒpƒeƒB‚©‚çƒAƒNƒZƒX
         var current = McpExecutionContext.Current;
         
         // Assert
@@ -355,7 +351,7 @@ public class McpExecutionContextTests
 }
 ```
 
-### ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Xï¿½g
+### “‡ƒeƒXƒg
 
 ```csharp
 public class NotionSyncToolIntegrationTests
@@ -392,17 +388,17 @@ public class NotionSyncToolIntegrationTests
 }
 ```
 
-## ï¿½xï¿½Xï¿½gï¿½vï¿½ï¿½ï¿½Nï¿½eï¿½Bï¿½X
+## ƒxƒXƒgƒvƒ‰ƒNƒeƒBƒX
 
-1. **ï¿½Kï¿½ï¿½ using ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½**: ï¿½Xï¿½Rï¿½[ï¿½vï¿½Ì“Kï¿½Ø‚ÈŠÇ—ï¿½
-2. **DI ï¿½ÅƒRï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ğ’“ï¿½ï¿½ï¿½ï¿½ï¿½**: ï¿½Ã“Iï¿½Aï¿½Nï¿½Zï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-3. **ï¿½Xï¿½Rï¿½[ï¿½vï¿½Í’Zï¿½ï¿½ï¿½Û‚ï¿½**: ï¿½cï¿½[ï¿½ï¿½ï¿½Ìï¿½ï¿½sï¿½Pï¿½Ê‚ÅƒXï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½ì¬
-4. **ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ÉŠï¿½ï¿½pï¿½ï¿½ï¿½ï¿½**: ï¿½gï¿½ï¿½ï¿½[ï¿½Tï¿½rï¿½ï¿½ï¿½eï¿½Bï¿½ÌŒï¿½ï¿½ï¿½
-5. **ï¿½lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½**: ï¿½ï¿½ï¿½Gï¿½Èï¿½ï¿½ï¿½ï¿½ÌŠKï¿½wï¿½Ç—ï¿½
+1. **•K‚¸ using ƒXƒe[ƒgƒƒ“ƒg‚ğg—p‚·‚é**: ƒXƒR[ƒv‚Ì“KØ‚ÈŠÇ—
+2. **DI ‚ÅƒRƒ“ƒeƒLƒXƒg‚ğ’“ü‚·‚é**: Ã“IƒAƒNƒZƒX‚æ‚è‚à„§
+3. **ƒXƒR[ƒv‚Í’Z‚­•Û‚Â**: ƒc[ƒ‹‚ÌÀs’PˆÊ‚ÅƒXƒR[ƒv‚ğì¬
+4. **‘ŠŠÖID‚ğƒƒO‚ÉŠˆ—p‚·‚é**: ƒgƒŒ[ƒTƒrƒŠƒeƒB‚ÌŒüã
+5. **ƒlƒXƒg‚µ‚½ƒXƒR[ƒv‚ğŠˆ—p‚·‚é**: •¡G‚Èˆ—‚ÌŠK‘wŠÇ—
 
-## ï¿½ï¿½ï¿½xï¿½Ègï¿½pï¿½ï¿½
+## ‚“x‚Èg—p—á
 
-### ï¿½Jï¿½Xï¿½^ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Ì’Ç‰ï¿½
+### ƒJƒXƒ^ƒ€ƒvƒƒpƒeƒB‚Ì’Ç‰Á
 
 ```csharp
 public class ExtendedMcpExecutionContext : McpExecutionContext
@@ -422,7 +418,7 @@ public class ExtendedMcpExecutionContext : McpExecutionContext
     }
 }
 
-// DI ï¿½oï¿½^
+// DI “o˜^
 services.AddScoped<IMcpExecutionContext>(provider =>
     new ExtendedMcpExecutionContext(
         Guid.NewGuid().ToString(),
@@ -431,7 +427,7 @@ services.AddScoped<IMcpExecutionContext>(provider =>
         sessionId: "session456"));
 ```
 
-### ï¿½~ï¿½hï¿½ï¿½ï¿½Eï¿½Fï¿½Aï¿½Æ‚Ì“ï¿½ï¿½ï¿½ï¿½iASP.NET Coreï¿½j
+### ƒ~ƒhƒ‹ƒEƒFƒA‚Æ‚Ì“‡iASP.NET Corej
 
 ```csharp
 public class McpContextMiddleware
@@ -448,13 +444,13 @@ public class McpContextMiddleware
         var mcpContext = context.RequestServices
             .GetRequiredService<IMcpExecutionContext>();
 
-        // HTTPï¿½wï¿½bï¿½_ï¿½[ï¿½ï¿½ï¿½ç‘Šï¿½ï¿½IDï¿½ï¿½ï¿½æ“¾ï¿½iï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½ê‡ï¿½j
+        // HTTPƒwƒbƒ_[‚©‚ç‘ŠŠÖID‚ğæ“¾i‘¶İ‚·‚éê‡j
         var correlationId = context.Request.Headers["X-Correlation-Id"].FirstOrDefault()
             ?? Guid.NewGuid().ToString();
 
         using var scope = mcpContext.BeginTool(context.Request.Path);
         
-        // ï¿½ï¿½ï¿½Xï¿½|ï¿½ï¿½ï¿½Xï¿½wï¿½bï¿½_ï¿½[ï¿½É‘ï¿½ï¿½ï¿½IDï¿½ï¿½Ç‰ï¿½
+        // ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_[‚É‘ŠŠÖID‚ğ’Ç‰Á
         context.Response.Headers.Append("X-Correlation-Id", correlationId);
 
         await _next(context);
@@ -465,31 +461,31 @@ public class McpContextMiddleware
 app.UseMiddleware<McpContextMiddleware>();
 ```
 
-## ï¿½gï¿½ï¿½ï¿½uï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½[ï¿½eï¿½Bï¿½ï¿½ï¿½O
+## ƒgƒ‰ƒuƒ‹ƒVƒ…[ƒeƒBƒ“ƒO
 
-### ï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ null ï¿½Ìê‡
+### ƒRƒ“ƒeƒLƒXƒg‚ª null ‚Ìê‡
 
 ```csharp
-// AddMcpExecutionContext ï¿½ï¿½ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½mï¿½F
+// AddMcpExecutionContext ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©Šm”F
 services.AddMcpExecutionContext();
 
-// ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½mï¿½F
+// ƒXƒR[ƒv‚ªì¬‚³‚ê‚Ä‚¢‚é‚©Šm”F
 using var scope = context.BeginTool("tool.name");
 ```
 
-### ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡
+### ‘ŠŠÖID‚ªˆê’v‚µ‚È‚¢ê‡
 
 ```csharp
-// ï¿½ñ“¯Šï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ExecutionContext ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡
-// ConfigureAwait(false) ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½mï¿½F
+// ”ñ“¯Šúˆ—‚Å ExecutionContext ‚ªˆø‚«Œp‚ª‚ê‚È‚¢ê‡
+// ConfigureAwait(false) ‚ğg—p‚µ‚Ä‚¢‚È‚¢‚©Šm”F
 await Task.Delay(100); // OK
-await Task.Delay(100).ConfigureAwait(false); // NG: ï¿½Rï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+await Task.Delay(100).ConfigureAwait(false); // NG: ƒRƒ“ƒeƒLƒXƒg‚ª¸‚í‚ê‚é
 ```
 
-### ï¿½lï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Rï¿½[ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ì‚µï¿½È‚ï¿½ï¿½ê‡
+### ƒlƒXƒg‚µ‚½ƒXƒR[ƒv‚ª‚¤‚Ü‚­“®ì‚µ‚È‚¢ê‡
 
 ```csharp
-// using ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ğ³‚ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½mï¿½F
+// using ƒXƒe[ƒgƒƒ“ƒg‚ğ³‚µ‚­g—p‚µ‚Ä‚¢‚é‚©Šm”F
 using (var scope1 = context.BeginTool("tool1"))
 {
     using (var scope2 = context.BeginTool("tool2"))
@@ -498,12 +494,12 @@ using (var scope1 = context.BeginTool("tool1"))
     }
 }
 
-// ï¿½È‰ï¿½ï¿½ï¿½ NG: scope ï¿½ï¿½ï¿½Kï¿½Ø‚É•Â‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+// ˆÈ‰º‚Í NG: scope ‚ª“KØ‚É•Â‚¶‚ç‚ê‚È‚¢
 var scope1 = context.BeginTool("tool1");
 var scope2 = context.BeginTool("tool2");
 ```
 
-## ï¿½Qï¿½lï¿½ï¿½ï¿½ï¿½ï¿½N
+## QlƒŠƒ“ƒN
 
 - [MCP Logging USAGE](../logging/USAGE.md)
 - [Ateliers.Core ExecutionContext](../../../Ateliers.Core/Context/)
