@@ -1,10 +1,10 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 #######################################
 # ateliers-ai-mcp-projectbase 更新スクリプト
 # 
 # 使用方法:
-#   ./scripts/update-project-knowledge.sh
+#   ./scripts/update-ateliers-ai-mcp-projectbase.sh
 #######################################
 
 set -e

@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 #######################################
 # ateliers-ai-mcp-projectbase 初回セットアップスクリプト
@@ -56,8 +56,8 @@ mkdir -p "$SCRIPTS_DIR"
 
 # 更新スクリプトをコピー
 echo -e "${BLUE}📋 更新スクリプトをコピー中...${NC}"
-cp "$SUBMODULE_PATH/scripts/update-project-knowledge.sh" "$SCRIPTS_DIR/"
-chmod +x "$SCRIPTS_DIR/update-project-knowledge.sh"
+cp "$SUBMODULE_PATH/scripts/update-ateliers-ai-mcp-projectbase.sh" "$SCRIPTS_DIR/"
+chmod +x "$SCRIPTS_DIR/update-ateliers-ai-mcp-projectbase.sh"
 
 # GitHub Actionsワークフローをコピー（オプション）
 echo ""
@@ -65,9 +65,20 @@ echo -e "${YELLOW}GitHub Actions による自動更新を設定しますか? (y/
 read -r response
 if [[ "$response" =~ ^[Yy]$ ]]; then
     mkdir -p .github/workflows
-    cp "$SUBMODULE_PATH/.github/workflows/update-project-knowledge.yml" .github/workflows/
+    cp "$SUBMODULE_PATH/.github/workflows/update-ateliers-ai-mcp-projectbase.yml" .github/workflows/
     echo -e "${GREEN}✅ GitHub Actions ワークフローを追加しました${NC}"
-    echo "   定期的に自動更新されます（毎週月曜日9時）"
+    echo "   定期的に自動更新されます（毎日9時）"
+    
+    # ワークフロー運用ドキュメントもコピー
+    echo ""
+    echo -e "${YELLOW}ワークフロー運用ドキュメントもコピーしますか? (y/N)${NC}"
+    read -r doc_response
+    if [[ "$doc_response" =~ ^[Yy]$ ]]; then
+        mkdir -p .github/docs/workflows
+        cp "$SUBMODULE_PATH/.github/docs/workflows/update-ateliers-ai-mcp-projectbase.md" .github/docs/workflows/
+        echo -e "${GREEN}✅ ワークフロー運用ドキュメントを追加しました${NC}"
+        echo "   場所: .github/docs/workflows/update-ateliers-ai-mcp-projectbase.md"
+    fi
 fi
 
 # .gitignoreの確認
@@ -92,9 +103,12 @@ echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━
 echo ""
 echo "【セットアップ内容】"
 echo "  ✓ サブモジュール: $SUBMODULE_PATH"
-echo "  ✓ 更新スクリプト: $SCRIPTS_DIR/update-project-knowledge.sh"
+echo "  ✓ 更新スクリプト: $SCRIPTS_DIR/update-ateliers-ai-mcp-projectbase.sh"
 if [[ "$response" =~ ^[Yy]$ ]]; then
-    echo "  ✓ GitHub Actions: .github/workflows/update-project-knowledge.yml"
+    echo "  ✓ GitHub Actions: .github/workflows/update-ateliers-ai-mcp-projectbase.yml"
+    if [[ "$doc_response" =~ ^[Yy]$ ]]; then
+        echo "  ✓ 運用ドキュメント: .github/docs/workflows/update-ateliers-ai-mcp-projectbase.md"
+    fi
 fi
 echo ""
 echo "【AI ツールでの使用方法】"
@@ -107,12 +121,15 @@ echo "    $SUBMODULE_PATH 内のファイルを開く"
 echo ""
 echo "【今後の更新方法】"
 echo ""
-echo "  手動更新:"
-echo "    ./$SCRIPTS_DIR/update-project-knowledge.sh"
+echo "  手動更新 (PowerShell):"
+echo "    .\\$SCRIPTS_DIR\\update-ateliers-ai-mcp-projectbase.ps1"
+echo ""
+echo "  手動更新 (bash):"
+echo "    ./$SCRIPTS_DIR/update-ateliers-ai-mcp-projectbase.sh"
 echo ""
 if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "  自動更新:"
-    echo "    毎週月曜日9時に自動実行されます"
+    echo "    毎日9時に自動実行されます"
     echo "    手動実行: GitHub > Actions > Update Project Knowledge > Run workflow"
     echo ""
 fi

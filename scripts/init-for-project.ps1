@@ -1,4 +1,4 @@
-#######################################
+﻿#######################################
 # ateliers-ai-mcp-projectbase 初回セットアップスクリプト (PowerShell版)
 # 
 # 使用方法:
@@ -25,6 +25,7 @@ ateliers-ai-mcp-projectbase セットアップスクリプト
   - masterブランチへの切り替え
   - 更新スクリプトのコピー
   - GitHub Actions の設定（オプション）
+  - ワークフロー運用ドキュメントのコピー（オプション）
 "@
     exit 0
 }
@@ -84,8 +85,8 @@ if (-not (Test-Path $SCRIPTS_DIR)) {
 
 # 更新スクリプトをコピー
 Write-Host "📋 更新スクリプトをコピー中..." -ForegroundColor Blue
-Copy-Item "$SUBMODULE_PATH/scripts/update-project-knowledge.ps1" "$SCRIPTS_DIR/" -Force
-Copy-Item "$SUBMODULE_PATH/scripts/update-project-knowledge.sh" "$SCRIPTS_DIR/" -Force
+Copy-Item "$SUBMODULE_PATH/scripts/update-ateliers-ai-mcp-projectbase.ps1" "$SCRIPTS_DIR/" -Force
+Copy-Item "$SUBMODULE_PATH/scripts/update-ateliers-ai-mcp-projectbase.sh" "$SCRIPTS_DIR/" -Force
 
 # GitHub Actionsワークフローをコピー（オプション）
 Write-Host ""
@@ -94,9 +95,21 @@ if ($response -match "^[Yy]$") {
     if (-not (Test-Path ".github/workflows")) {
         New-Item -ItemType Directory -Path ".github/workflows" -Force | Out-Null
     }
-    Copy-Item "$SUBMODULE_PATH/.github/workflows/update-project-knowledge.yml" ".github/workflows/" -Force
+    Copy-Item "$SUBMODULE_PATH/.github/workflows/update-ateliers-ai-mcp-projectbase.yml" ".github/workflows/" -Force
     Write-Host "✅ GitHub Actions ワークフローを追加しました" -ForegroundColor Green
     Write-Host "   定期的に自動更新されます（毎日9時）"
+    
+    # ワークフロー運用ドキュメントもコピー
+    Write-Host ""
+    $docResponse = Read-Host "ワークフロー運用ドキュメントもコピーしますか? (y/N)"
+    if ($docResponse -match "^[Yy]$") {
+        if (-not (Test-Path ".github/docs/workflows")) {
+            New-Item -ItemType Directory -Path ".github/docs/workflows" -Force | Out-Null
+        }
+        Copy-Item "$SUBMODULE_PATH/.github/docs/workflows/update-ateliers-ai-mcp-projectbase.md" ".github/docs/workflows/" -Force
+        Write-Host "✅ ワークフロー運用ドキュメントを追加しました" -ForegroundColor Green
+        Write-Host "   場所: .github/docs/workflows/update-ateliers-ai-mcp-projectbase.md"
+    }
 }
 
 # .gitignoreの確認
@@ -121,9 +134,12 @@ Write-Host "━━━━━━━━━━━━━━━━━━━━━━�
 Write-Host ""
 Write-Host "【セットアップ内容】"
 Write-Host "  ✓ サブモジュール: $SUBMODULE_PATH"
-Write-Host "  ✓ 更新スクリプト: $SCRIPTS_DIR/update-project-knowledge.ps1"
+Write-Host "  ✓ 更新スクリプト: $SCRIPTS_DIR/update-ateliers-ai-mcp-projectbase.ps1"
 if ($response -match "^[Yy]$") {
-    Write-Host "  ✓ GitHub Actions: .github/workflows/update-project-knowledge.yml"
+    Write-Host "  ✓ GitHub Actions: .github/workflows/update-ateliers-ai-mcp-projectbase.yml"
+    if ($docResponse -match "^[Yy]$") {
+        Write-Host "  ✓ 運用ドキュメント: .github/docs/workflows/update-ateliers-ai-mcp-projectbase.md"
+    }
 }
 Write-Host ""
 Write-Host "【AI ツールでの使用方法】"
@@ -137,10 +153,10 @@ Write-Host ""
 Write-Host "【今後の更新方法】"
 Write-Host ""
 Write-Host "  手動更新 (PowerShell):"
-Write-Host "    .\$SCRIPTS_DIR\update-project-knowledge.ps1"
+Write-Host "    .\$SCRIPTS_DIR\update-ateliers-ai-mcp-projectbase.ps1"
 Write-Host ""
 Write-Host "  手動更新 (bash):"
-Write-Host "    ./$SCRIPTS_DIR/update-project-knowledge.sh"
+Write-Host "    ./$SCRIPTS_DIR/update-ateliers-ai-mcp-projectbase.sh"
 Write-Host ""
 if ($response -match "^[Yy]$") {
     Write-Host "  自動更新:"

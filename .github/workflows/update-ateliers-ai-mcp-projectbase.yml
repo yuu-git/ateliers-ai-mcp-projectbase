@@ -1,4 +1,4 @@
-name: Update Project Knowledge
+﻿name: Update Project Knowledge
 
 on:
   # 毎日 9:00 (JST) に自動実行（活発な開発期間中）
@@ -77,7 +77,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .submodules/ateliers-ai-mcp-projectbase
-          git commit -m "chore: update project knowledge submodule" \
+          git commit -m "chore: update ateliers-ai-mcp-projectbase submodule" \
                      -m "Updated from ${{ steps.current_commit.outputs.short_sha }} to ${{ steps.updated_commit.outputs.short_sha }} (${{ steps.changelog.outputs.count }} commits)"
           git push
       

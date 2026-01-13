@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include=".github\docs\README.md" />
+    <None Include=".github\docs\workflows\update-ateliers-ai-mcp-projectbase.md" />
+    <None Include=".github\workflows\update-ateliers-ai-mcp-projectbase.yml" />
+  </ItemGroup>
+
 </Project>

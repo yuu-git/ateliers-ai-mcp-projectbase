@@ -1,8 +1,8 @@
-#######################################
+﻿#######################################
 # ateliers-ai-mcp-projectbase 更新スクリプト (PowerShell版)
 # 
 # 使用方法:
-#   .\scripts\update-project-knowledge.ps1
+#   .\scripts\update-ateliers-ai-mcp-projectbase.ps1
 #######################################
 
 param(
@@ -14,7 +14,7 @@ if ($Help) {
 ateliers-ai-mcp-projectbase 更新スクリプト
 
 使用方法:
-  .\scripts\update-project-knowledge.ps1
+  .\scripts\update-ateliers-ai-mcp-projectbase.ps1
 
 このスクリプトは以下を実行します:
   - サブモジュールの最新版を取得
