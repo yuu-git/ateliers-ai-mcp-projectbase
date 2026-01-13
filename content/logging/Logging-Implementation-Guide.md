@@ -1,72 +1,79 @@
-# MCP ƒƒMƒ“ƒO ŽÀ‘•ƒKƒCƒh
+---
+title: MCP ãƒ­ã‚®ãƒ³ã‚° å®Ÿè£…ã‚¬ã‚¤ãƒ‰
+sidebar_label: ãƒ­ã‚®ãƒ³ã‚°å®Ÿè£…ã‚¬ã‚¤ãƒ‰
+tags: [Ateliers.Ai.Mcp, Logging, ãƒ­ã‚®ãƒ³ã‚°, ã‚¬ã‚¤ãƒ‰]
+description: Ateliers.Ai.Mcp ã‚µãƒ¼ãƒ“ã‚¹å®Ÿè£…ã«ãŠã‘ã‚‹ãƒ­ã‚®ãƒ³ã‚°ã®å®Ÿè£…ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³
+---
 
-‚±‚ÌƒhƒLƒ…ƒƒ“ƒg‚ÍAMCPƒT[ƒrƒXŽÀ‘•Žž‚Ì**ƒƒMƒ“ƒO•ûj**‚ð’ñ‹Ÿ‚µ‚Ü‚·B
-ŠJ”­ŽÒ‚ªƒT[ƒrƒXƒNƒ‰ƒX‚ÉƒƒO‚ð’Ç‰Á‚·‚éÛ‚Ì‹ï‘Ì“I‚ÈŽwj‚ðŽ¦‚µ‚Ü‚·B
+# MCP ãƒ­ã‚®ãƒ³ã‚° å®Ÿè£…ã‚¬ã‚¤ãƒ‰
+
+ã“ã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¯ã€MCPã‚µãƒ¼ãƒ“ã‚¹å®Ÿè£…æ™‚ã®**ãƒ­ã‚®ãƒ³ã‚°æ–¹é‡**ã‚’æä¾›ã—ã¾ã™ã€‚
+é–‹ç™ºè€…ãŒã‚µãƒ¼ãƒ“ã‚¹ã‚¯ãƒ©ã‚¹ã«ãƒ­ã‚°ã‚’è¿½åŠ ã™ã‚‹éš›ã®å…·ä½“çš„ãªæŒ‡é‡ã‚’ç¤ºã—ã¾ã™ã€‚
 
 ---
 
-## 1. Šî–{Œ´‘¥
+## 1. åŸºæœ¬åŽŸå‰‡
 
-### 1.1 ƒƒOƒŒƒxƒ‹‚ÌŽg‚¢•ª‚¯
+### 1.1 ãƒ­ã‚°ãƒ¬ãƒ™ãƒ«ã®ä½¿ã„åˆ†ã‘
 
-| ƒŒƒxƒ‹ | —p“r | —á |
+| ãƒ¬ãƒ™ãƒ« | ç”¨é€” | ä¾‹ |
 |--------|------|-----|
-| **Trace** | LLM“®ì‚ÌÚ×ƒgƒŒ[ƒX | ƒvƒƒ“ƒvƒgAƒŒƒXƒ|ƒ“ƒXA„˜_‰ß’ö |
-| **Debug** | ŠJ”­EƒfƒoƒbƒOî•ñ | “à•”ó‘ÔA•Ï”’lAƒtƒ[Šm”F |
-| **Info** | ’Êí‚ÌŽÀsƒtƒ[ | ˆ—ŠJŽnAŠ®—¹AŽå—v‚Èó‘Ô•Ï‰» |
-| **Warn** | ŒxiŒp‘±‰Â”\j | Ý’è•s‘«AƒtƒH[ƒ‹ƒoƒbƒNŽÀsA”ñ„§‹@”\Žg—p |
-| **Error** | ƒGƒ‰[iŒp‘±‰Â”\j | ‘€ìŽ¸”s‚¾‚ªŒ‹‰ÊƒIƒuƒWƒFƒNƒg‚Å’Ê’m‰Â”\ |
-| **Critical** | ’v–½“IƒGƒ‰[iŒp‘±•s‰Âj | —áŠO‚ðthrow‚·‚é’¼‘O |
+| **Trace** | LLMå‹•ä½œã®è©³ç´°ãƒˆãƒ¬ãƒ¼ã‚¹ | ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã€æŽ¨è«–éŽç¨‹ |
+| **Debug** | é–‹ç™ºãƒ»ãƒ‡ãƒãƒƒã‚°æƒ…å ± | å†…éƒ¨çŠ¶æ…‹ã€å¤‰æ•°å€¤ã€ãƒ•ãƒ­ãƒ¼ç¢ºèª |
+| **Info** | é€šå¸¸ã®å®Ÿè¡Œãƒ•ãƒ­ãƒ¼ | å‡¦ç†é–‹å§‹ã€å®Œäº†ã€ä¸»è¦ãªçŠ¶æ…‹å¤‰åŒ– |
+| **Warn** | è­¦å‘Šï¼ˆç¶™ç¶šå¯èƒ½ï¼‰ | è¨­å®šä¸è¶³ã€ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯å®Ÿè¡Œã€éžæŽ¨å¥¨æ©Ÿèƒ½ä½¿ç”¨ |
+| **Error** | ã‚¨ãƒ©ãƒ¼ï¼ˆç¶™ç¶šå¯èƒ½ï¼‰ | æ“ä½œå¤±æ•—ã ãŒçµæžœã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§é€šçŸ¥å¯èƒ½ |
+| **Critical** | è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ï¼ˆç¶™ç¶šä¸å¯ï¼‰ | ä¾‹å¤–ã‚’throwã™ã‚‹ç›´å‰ |
 
 ---
 
-## 2. —áŠOˆ—‚ÆƒƒMƒ“ƒO‚Ìƒpƒ^[ƒ“
+## 2. ä¾‹å¤–å‡¦ç†ã¨ãƒ­ã‚®ãƒ³ã‚°ã®ãƒ‘ã‚¿ãƒ¼ãƒ³
 
-### 2.1 Šî–{ƒpƒ^[ƒ“F—áŠO‚ðæ‚Éì¬‚µ‚Ä‚©‚çƒƒO
+### 2.1 åŸºæœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼šä¾‹å¤–ã‚’å…ˆã«ä½œæˆã—ã¦ã‹ã‚‰ãƒ­ã‚°
 
 ```csharp
-// ? ˆ«‚¢—á
+// ? æ‚ªã„ä¾‹
 if (options == null)
 {
-    McpLogger?.Critical($"{LogPrefix} ‰Šú‰»Ž¸”s");
+    McpLogger?.Critical($"{LogPrefix} åˆæœŸåŒ–å¤±æ•—");
     throw new ArgumentNullException(nameof(options));
 }
 
-// ? —Ç‚¢—á
+// ? è‰¯ã„ä¾‹
 if (options == null)
 {
     var ex = new ArgumentNullException(nameof(options));
-    McpLogger?.Critical($"{LogPrefix} ‰Šú‰»Ž¸”s", ex);
+    McpLogger?.Critical($"{LogPrefix} åˆæœŸåŒ–å¤±æ•—", ex);
     throw ex;
 }
 ```
 
-**——RF**
-- —áŠOƒIƒuƒWƒFƒNƒg‚ðƒƒO‚ÉŠÜ‚ß‚é‚±‚Æ‚ÅAƒXƒ^ƒbƒNƒgƒŒ[ƒX‚È‚Ç‚ÌÚ×î•ñ‚ª‹L˜^‚³‚ê‚é
-- ƒƒO‚Æ—áŠO‚Ìî•ñ‚ªˆê’v‚·‚é
+**ç†ç”±ï¼š**
+- ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ­ã‚°ã«å«ã‚ã‚‹ã“ã¨ã§ã€ã‚¹ã‚¿ãƒƒã‚¯ãƒˆãƒ¬ãƒ¼ã‚¹ãªã©ã®è©³ç´°æƒ…å ±ãŒè¨˜éŒ²ã•ã‚Œã‚‹
+- ãƒ­ã‚°ã¨ä¾‹å¤–ã®æƒ…å ±ãŒä¸€è‡´ã™ã‚‹
 
 ---
 
-### 2.2 Critical vs Error ‚ÌŽg‚¢•ª‚¯
+### 2.2 Critical vs Error ã®ä½¿ã„åˆ†ã‘
 
-#### Critical: Œp‘±•s‰Â”\‚Å throw ‚·‚éê‡
+#### Critical: ç¶™ç¶šä¸å¯èƒ½ã§ throw ã™ã‚‹å ´åˆ
 
 ```csharp
 if (!File.Exists(fullPath))
 {
     var ex = new FileNotFoundException($"File not found: {filePath}");
-    McpLogger?.Critical($"{LogPrefix} ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ: fullPath={fullPath}", ex);
+    McpLogger?.Critical($"{LogPrefix} ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: fullPath={fullPath}", ex);
     throw ex;
 }
 ```
 
-#### Error: Œp‘±‰Â”\‚Èê‡iŒ‹‰ÊƒIƒuƒWƒFƒNƒg‚Å’Ê’mj
+#### Error: ç¶™ç¶šå¯èƒ½ãªå ´åˆï¼ˆçµæžœã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§é€šçŸ¥ï¼‰
 
 ```csharp
 if (!Repository.IsValid(repoPath))
 {
     var ex = new InvalidOperationException($"Not a valid git repository: {repoPath}");
-    McpLogger?.Error($"{LogPrefix} ƒŠƒ|ƒWƒgƒŠ‚ª–³Œø‚Å‚·: {repoPath}", ex);
+    McpLogger?.Error($"{LogPrefix} ãƒªãƒã‚¸ãƒˆãƒªãŒç„¡åŠ¹ã§ã™: {repoPath}", ex);
     return new GitPullResult
     {
         Success = false,
@@ -75,18 +82,18 @@ if (!Repository.IsValid(repoPath))
 }
 ```
 
-**Žg‚¢•ª‚¯‚ÌŠî€F**
-- —áŠO‚ð throw ‚·‚é ¨ **Critical**
-- Œ‹‰ÊƒIƒuƒWƒFƒNƒg‚ð•Ô‚· ¨ **Error**
-- ˆ—‚ð‘±s‚Å‚«‚é ¨ **Warn**
+**ä½¿ã„åˆ†ã‘ã®åŸºæº–ï¼š**
+- ä¾‹å¤–ã‚’ throw ã™ã‚‹ â†’ **Critical**
+- çµæžœã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¿”ã™ â†’ **Error**
+- å‡¦ç†ã‚’ç¶šè¡Œã§ãã‚‹ â†’ **Warn**
 
 ---
 
-## 3. ƒT[ƒrƒXƒNƒ‰ƒX‚Å‚ÌƒƒMƒ“ƒOŽÀ‘•ƒpƒ^[ƒ“
+## 3. ã‚µãƒ¼ãƒ“ã‚¹ã‚¯ãƒ©ã‚¹ã§ã®ãƒ­ã‚®ãƒ³ã‚°å®Ÿè£…ãƒ‘ã‚¿ãƒ¼ãƒ³
 
-### 3.1 LogPrefix ‚Ì’è‹`
+### 3.1 LogPrefix ã®å®šç¾©
 
-ŠeƒT[ƒrƒXƒNƒ‰ƒX‚Ìæ“ª‚Å’è‹`‚µ‚Ü‚·B
+å„ã‚µãƒ¼ãƒ“ã‚¹ã‚¯ãƒ©ã‚¹ã®å…ˆé ­ã§å®šç¾©ã—ã¾ã™ã€‚
 
 ```csharp
 public class GitHubService : McpServiceBase, IGitHubService
@@ -99,168 +106,168 @@ public class GitHubService : McpServiceBase, IGitHubService
 
 ---
 
-### 3.2 ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+### 3.2 ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 ```csharp
 public GitHubService(IMcpLogger mcpLogger, IGitHubSettings gitHubSettings, ...)
     : base(mcpLogger)
 {
-    McpLogger?.Info($"{LogPrefix} ‰Šú‰»ˆ—ŠJŽn");
+    McpLogger?.Info($"{LogPrefix} åˆæœŸåŒ–å‡¦ç†é–‹å§‹");
     
     if (gitHubSettings == null)
     {
         var ex = new ArgumentNullException(nameof(gitHubSettings));
-        McpLogger?.Critical($"{LogPrefix} ‰Šú‰»Ž¸”s", ex);
+        McpLogger?.Critical($"{LogPrefix} åˆæœŸåŒ–å¤±æ•—", ex);
         throw ex;
     }
     
     _gitHubSettings = gitHubSettings;
     
-    McpLogger?.Info($"{LogPrefix} ‰Šú‰»Š®—¹");
+    McpLogger?.Info($"{LogPrefix} åˆæœŸåŒ–å®Œäº†");
 }
 ```
 
 ---
 
-### 3.3 ŒöŠJƒƒ\ƒbƒh
+### 3.3 å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰
 
-#### ŠÈ’P‚ÈŽæ“¾ƒƒ\ƒbƒh
+#### ç°¡å˜ãªå–å¾—ãƒ¡ã‚½ãƒƒãƒ‰
 
 ```csharp
 public IEnumerable<string> GetRepositoryKeys()
 {
-    McpLogger?.Debug($"{LogPrefix} GetRepositoryKeys ŠJŽn");
+    McpLogger?.Debug($"{LogPrefix} GetRepositoryKeys é–‹å§‹");
     var keys = _gitHubSettings.GitHubRepositories.Keys;
-    McpLogger?.Debug($"{LogPrefix} GetRepositoryKeys Š®—¹: {keys.Count()}Œ");
+    McpLogger?.Debug($"{LogPrefix} GetRepositoryKeys å®Œäº†: {keys.Count()}ä»¶");
     return keys;
 }
 ```
 
-#### •¡ŽG‚Èˆ—ƒƒ\ƒbƒh
+#### è¤‡é›‘ãªå‡¦ç†ãƒ¡ã‚½ãƒƒãƒ‰
 
 ```csharp
 public async Task<string> GetFileContentAsync(string repositoryKey, string filePath)
 {
-    McpLogger?.Info($"{LogPrefix} GetFileContentAsync ŠJŽn: repositoryKey={repositoryKey}, filePath={filePath}");
+    McpLogger?.Info($"{LogPrefix} GetFileContentAsync é–‹å§‹: repositoryKey={repositoryKey}, filePath={filePath}");
     
     if (!_gitHubSettings.GitHubRepositories.TryGetValue(repositoryKey, out var repoSettings))
     {
         var ex = new ArgumentException($"Repository '{repositoryKey}' not found in configuration.");
-        McpLogger?.Critical($"{LogPrefix} ƒŠƒ|ƒWƒgƒŠ‚ªÝ’è‚ÉŒ©‚Â‚©‚è‚Ü‚¹‚ñ: repositoryKey={repositoryKey}", ex);
+        McpLogger?.Critical($"{LogPrefix} ãƒªãƒã‚¸ãƒˆãƒªãŒè¨­å®šã«è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: repositoryKey={repositoryKey}", ex);
         throw ex;
     }
     
-    McpLogger?.Debug($"{LogPrefix} ƒ[ƒJƒ‹—Dæƒ‚[ƒh: localPath={repoSettings.LocalPath}");
+    McpLogger?.Debug($"{LogPrefix} ãƒ­ãƒ¼ã‚«ãƒ«å„ªå…ˆãƒ¢ãƒ¼ãƒ‰: localPath={repoSettings.LocalPath}");
     
-    // ... ˆ— ...
+    // ... å‡¦ç† ...
     
-    McpLogger?.Info($"{LogPrefix} GetFileContentAsync Š®—¹: ƒTƒCƒY={content.Length}•¶Žš");
+    McpLogger?.Info($"{LogPrefix} GetFileContentAsync å®Œäº†: ã‚µã‚¤ã‚º={content.Length}æ–‡å­—");
     return content;
 }
 ```
 
 ---
 
-### 3.4 ƒvƒ‰ƒCƒx[ƒgƒƒ\ƒbƒh
+### 3.4 ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
 
-d—v‚Èˆ—‚Ì‚ÝƒƒO‚ð’Ç‰Á‚µ‚Ü‚·B
+é‡è¦ãªå‡¦ç†ã®ã¿ãƒ­ã‚°ã‚’è¿½åŠ ã—ã¾ã™ã€‚
 
 ```csharp
 private async Task<string> GetGitHubFileAsync(string owner, string repo, string path, string branch)
 {
     var cacheKey = $"github:{owner}/{repo}:{branch}:{path}";
-    McpLogger?.Debug($"{LogPrefix} GetGitHubFileAsync ŠJŽn: owner={owner}, repo={repo}, path={path}");
+    McpLogger?.Debug($"{LogPrefix} GetGitHubFileAsync é–‹å§‹: owner={owner}, repo={repo}, path={path}");
     
     if (_cache.TryGetValue(cacheKey, out string? cachedContent))
     {
-        McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…ƒqƒbƒg: cacheKey={cacheKey}");
+        McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ’ãƒƒãƒˆ: cacheKey={cacheKey}");
         return cachedContent;
     }
     
-    McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…ƒ~ƒXAGitHub‚©‚çŽæ“¾");
+    McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒŸã‚¹ã€GitHubã‹ã‚‰å–å¾—");
     
-    // ... APIŒÄ‚Ño‚µ ...
+    // ... APIå‘¼ã³å‡ºã— ...
     
-    McpLogger?.Debug($"{LogPrefix} GetGitHubFileAsync Š®—¹: ƒTƒCƒY={content.Length}•¶Žš");
+    McpLogger?.Debug($"{LogPrefix} GetGitHubFileAsync å®Œäº†: ã‚µã‚¤ã‚º={content.Length}æ–‡å­—");
     return content;
 }
 ```
 
 ---
 
-## 4. ƒƒO‚ÉŠÜ‚ß‚é‚×‚«î•ñ
+## 4. ãƒ­ã‚°ã«å«ã‚ã‚‹ã¹ãæƒ…å ±
 
-### 4.1 •K{î•ñ
+### 4.1 å¿…é ˆæƒ…å ±
 
-- **ƒƒ\ƒbƒh–¼**: ‚Ç‚Ìˆ—‚©“Á’è‚Å‚«‚é‚æ‚¤‚É
-- **Žå—vƒpƒ‰ƒ[ƒ^**: ˆ—‘ÎÛ‚ÌŽ¯•Êî•ñ
-- **ˆ—Œ‹‰Ê**: Œ”AƒTƒCƒYA¬Œ÷/Ž¸”s
+- **ãƒ¡ã‚½ãƒƒãƒ‰å**: ã©ã®å‡¦ç†ã‹ç‰¹å®šã§ãã‚‹ã‚ˆã†ã«
+- **ä¸»è¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿**: å‡¦ç†å¯¾è±¡ã®è­˜åˆ¥æƒ…å ±
+- **å‡¦ç†çµæžœ**: ä»¶æ•°ã€ã‚µã‚¤ã‚ºã€æˆåŠŸ/å¤±æ•—
 
-### 4.2 „§î•ñ
+### 4.2 æŽ¨å¥¨æƒ…å ±
 
 ```csharp
-McpLogger?.Info($"{LogPrefix} ListFilesAsync ŠJŽn: " +
+McpLogger?.Info($"{LogPrefix} ListFilesAsync é–‹å§‹: " +
     $"repositoryKey={repositoryKey}, " +
     $"directory={directory}, " +
     $"extension={extension}");
 ```
 
-### 4.3 ‹@–§î•ñ‚ÌŽæ‚èˆµ‚¢
+### 4.3 æ©Ÿå¯†æƒ…å ±ã®å–ã‚Šæ‰±ã„
 
-#### ? ”ð‚¯‚é‚×‚«î•ñ
+#### ? é¿ã‘ã‚‹ã¹ãæƒ…å ±
 
-- ƒAƒNƒZƒXƒg[ƒNƒ“
-- ƒpƒXƒ[ƒh
-- Š®‘S‚ÈƒŠƒ‚[ƒgURLiƒ†[ƒU[–¼EƒŠƒ|ƒWƒgƒŠ–¼‚ðŠÜ‚Þj
+- ã‚¢ã‚¯ã‚»ã‚¹ãƒˆãƒ¼ã‚¯ãƒ³
+- ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
+- å®Œå…¨ãªãƒªãƒ¢ãƒ¼ãƒˆURLï¼ˆãƒ¦ãƒ¼ã‚¶ãƒ¼åãƒ»ãƒªãƒã‚¸ãƒˆãƒªåã‚’å«ã‚€ï¼‰
 
-#### ? ƒ}ƒXƒN‚µ‚Ä‹L˜^
+#### ? ãƒžã‚¹ã‚¯ã—ã¦è¨˜éŒ²
 
 ```csharp
 var remoteUrl = repo.Network.Remotes["origin"]?.Url;
-McpLogger?.Debug($"{LogPrefix} ƒŠƒ‚[ƒgURL: {MaskRemoteUrl(remoteUrl)}");
+McpLogger?.Debug($"{LogPrefix} ãƒªãƒ¢ãƒ¼ãƒˆURL: {MaskRemoteUrl(remoteUrl)}");
 
-// "https://github.com/user/repo" ¨ "github.com/..."
+// "https://github.com/user/repo" â†’ "github.com/..."
 ```
 
 ---
 
-## 5. “ÁŽê‚ÈƒP[ƒX‚ÌƒƒMƒ“ƒO
+## 5. ç‰¹æ®Šãªã‚±ãƒ¼ã‚¹ã®ãƒ­ã‚®ãƒ³ã‚°
 
-### 5.1 ƒtƒH[ƒ‹ƒoƒbƒNˆ—
+### 5.1 ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
 
 ```csharp
 try
 {
-    // ƒ[ƒJƒ‹‚©‚çŽæ“¾‚ðŽŽ‚Ý‚é
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã‹ã‚‰å–å¾—ã‚’è©¦ã¿ã‚‹
     return await GetLocalFileAsync(filePath);
 }
 catch (Exception ex)
 {
-    McpLogger?.Warn($"{LogPrefix} ƒ[ƒJƒ‹ƒAƒNƒZƒXŽ¸”sAGitHub‚ÉƒtƒH[ƒ‹ƒoƒbƒN: {ex.Message}");
+    McpLogger?.Warn($"{LogPrefix} ãƒ­ãƒ¼ã‚«ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å¤±æ•—ã€GitHubã«ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯: {ex.Message}");
     return await GetGitHubFileAsync(filePath);
 }
 ```
 
-### 5.2 ƒLƒƒƒbƒVƒ…“®ì
+### 5.2 ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‹•ä½œ
 
 ```csharp
 if (_cache.TryGetValue(cacheKey, out var cached))
 {
-    McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…ƒqƒbƒg: cacheKey={cacheKey}");
+    McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ’ãƒƒãƒˆ: cacheKey={cacheKey}");
     return cached;
 }
 
-McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…ƒ~ƒXAV‹KŽæ“¾");
-// ... Žæ“¾ˆ— ...
+McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒŸã‚¹ã€æ–°è¦å–å¾—");
+// ... å–å¾—å‡¦ç† ...
 _cache.Set(cacheKey, value, _cacheExpiration);
-McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…‚É•Û‘¶: cacheKey={cacheKey}");
+McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ä¿å­˜: cacheKey={cacheKey}");
 ```
 
-### 5.3 ŠO•”ƒvƒƒZƒXŽÀs
+### 5.3 å¤–éƒ¨ãƒ—ãƒ­ã‚»ã‚¹å®Ÿè¡Œ
 
 ```csharp
 var args = $"-y -i \"{inputFile}\" \"{outputFile}\"";
-McpLogger?.Info($"{LogPrefix} FFmpeg ŽÀsŠJŽn: ƒpƒ‰ƒ[ƒ^ {args}");
+McpLogger?.Info($"{LogPrefix} FFmpeg å®Ÿè¡Œé–‹å§‹: ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ {args}");
 
 var process = Process.Start(psi);
 await process.WaitForExitAsync(ct);
@@ -268,93 +275,93 @@ await process.WaitForExitAsync(ct);
 if (process.ExitCode != 0)
 {
     var error = await process.StandardError.ReadToEndAsync(ct);
-    var ex = new InvalidOperationException($"FFmpegŽÀsŽ¸”s: ExitCode={process.ExitCode}, ƒGƒ‰[={error}");
-    McpLogger?.Critical($"{LogPrefix} FFmpeg ŽÀsŽ¸”s", ex);
+    var ex = new InvalidOperationException($"FFmpegå®Ÿè¡Œå¤±æ•—: ExitCode={process.ExitCode}, ã‚¨ãƒ©ãƒ¼={error}");
+    McpLogger?.Critical($"{LogPrefix} FFmpeg å®Ÿè¡Œå¤±æ•—", ex);
     throw ex;
 }
 
-McpLogger?.Info($"{LogPrefix} FFmpeg ŽÀsŠ®—¹");
+McpLogger?.Info($"{LogPrefix} FFmpeg å®Ÿè¡Œå®Œäº†");
 ```
 
 ---
 
-## 6. ƒƒO‚ð’Ç‰Á‚·‚×‚«ƒ^ƒCƒ~ƒ“ƒO
+## 6. ãƒ­ã‚°ã‚’è¿½åŠ ã™ã¹ãã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-### 6.1 •K‚¸ƒƒO‚ð’Ç‰Á‚·‚é‰ÓŠ
+### 6.1 å¿…ãšãƒ­ã‚°ã‚’è¿½åŠ ã™ã‚‹ç®‡æ‰€
 
-- [ ] ƒRƒ“ƒXƒgƒ‰ƒNƒ^i‰Šú‰»ŠJŽnEŠ®—¹j
-- [ ] ŒöŠJƒƒ\ƒbƒh‚ÌŠJŽnEŠ®—¹
-- [ ] —áŠO‚ð throw ‚·‚é’¼‘O
-- [ ] ŠO•”ƒT[ƒrƒXŒÄ‚Ño‚µiAPIAƒf[ƒ^ƒx[ƒXAƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€j
-- [ ] ƒtƒH[ƒ‹ƒoƒbƒNˆ—
-- [ ] ƒLƒƒƒbƒVƒ…“®ì
+- [ ] ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆåˆæœŸåŒ–é–‹å§‹ãƒ»å®Œäº†ï¼‰
+- [ ] å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰ã®é–‹å§‹ãƒ»å®Œäº†
+- [ ] ä¾‹å¤–ã‚’ throw ã™ã‚‹ç›´å‰
+- [ ] å¤–éƒ¨ã‚µãƒ¼ãƒ“ã‚¹å‘¼ã³å‡ºã—ï¼ˆAPIã€ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ï¼‰
+- [ ] ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†
+- [ ] ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‹•ä½œ
 
-### 6.2 ó‹µ‚É‰ž‚¶‚Ä’Ç‰Á‚·‚é‰ÓŠ
+### 6.2 çŠ¶æ³ã«å¿œã˜ã¦è¿½åŠ ã™ã‚‹ç®‡æ‰€
 
-- [ ] d—v‚ÈðŒ•ªŠò
-- [ ] ƒpƒtƒH[ƒ}ƒ“ƒXŒv‘ª‚ª•K—v‚Èˆ—
-- [ ] ƒfƒoƒbƒO‚ª¢“ï‚È•¡ŽG‚Èˆ—
+- [ ] é‡è¦ãªæ¡ä»¶åˆ†å²
+- [ ] ãƒ‘ãƒ•ã‚©ãƒ¼ãƒžãƒ³ã‚¹è¨ˆæ¸¬ãŒå¿…è¦ãªå‡¦ç†
+- [ ] ãƒ‡ãƒãƒƒã‚°ãŒå›°é›£ãªè¤‡é›‘ãªå‡¦ç†
 
-### 6.3 ƒƒO‚ð’Ç‰Á‚µ‚È‚¢‰ÓŠ
+### 6.3 ãƒ­ã‚°ã‚’è¿½åŠ ã—ãªã„ç®‡æ‰€
 
-- [ ] ’Pƒ‚ÈƒvƒƒpƒeƒBƒAƒNƒZƒX
-- [ ] “à•”“I‚Èƒwƒ‹ƒp[ƒƒ\ƒbƒhiŒÄ‚Ño‚µŒ³‚ÅƒƒO‹L˜^Ï‚Ýj
-- [ ] ‚•p“x‚ÅŒÄ‚Î‚ê‚éŒy—Ê‚Èˆ—
+- [ ] å˜ç´”ãªãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚¢ã‚¯ã‚»ã‚¹
+- [ ] å†…éƒ¨çš„ãªãƒ˜ãƒ«ãƒ‘ãƒ¼ãƒ¡ã‚½ãƒƒãƒ‰ï¼ˆå‘¼ã³å‡ºã—å…ƒã§ãƒ­ã‚°è¨˜éŒ²æ¸ˆã¿ï¼‰
+- [ ] é«˜é »åº¦ã§å‘¼ã°ã‚Œã‚‹è»½é‡ãªå‡¦ç†
 
 ---
 
-## 7. ƒƒO‚Ì—±“xƒKƒCƒhƒ‰ƒCƒ“
+## 7. ãƒ­ã‚°ã®ç²’åº¦ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³
 
-### 7.1 Info ƒŒƒxƒ‹
+### 7.1 Info ãƒ¬ãƒ™ãƒ«
 
 ```csharp
-// ? “KØFŽå—v‚Èˆ—ƒtƒ[‚ÌŠJŽnEŠ®—¹
-McpLogger?.Info($"{LogPrefix} GetFileContentAsync ŠJŽn: repositoryKey={repositoryKey}");
-McpLogger?.Info($"{LogPrefix} GetFileContentAsync Š®—¹: ƒTƒCƒY={content.Length}•¶Žš");
+// ? é©åˆ‡ï¼šä¸»è¦ãªå‡¦ç†ãƒ•ãƒ­ãƒ¼ã®é–‹å§‹ãƒ»å®Œäº†
+McpLogger?.Info($"{LogPrefix} GetFileContentAsync é–‹å§‹: repositoryKey={repositoryKey}");
+McpLogger?.Info($"{LogPrefix} GetFileContentAsync å®Œäº†: ã‚µã‚¤ã‚º={content.Length}æ–‡å­—");
 
-// ? ‰ßèF‚·‚×‚Ä‚Ì“à•”ˆ—
-McpLogger?.Info($"{LogPrefix} ƒpƒX‚ðŒ‹‡’†");
-McpLogger?.Info($"{LogPrefix} ƒtƒ@ƒCƒ‹‘¶ÝŠm”F’†");
+// ? éŽå‰°ï¼šã™ã¹ã¦ã®å†…éƒ¨å‡¦ç†
+McpLogger?.Info($"{LogPrefix} ãƒ‘ã‚¹ã‚’çµåˆä¸­");
+McpLogger?.Info($"{LogPrefix} ãƒ•ã‚¡ã‚¤ãƒ«å­˜åœ¨ç¢ºèªä¸­");
 ```
 
-### 7.2 Debug ƒŒƒxƒ‹
+### 7.2 Debug ãƒ¬ãƒ™ãƒ«
 
 ```csharp
-// ? “KØF“à•”ó‘ÔAƒtƒ[Šm”F
-McpLogger?.Debug($"{LogPrefix} ƒLƒƒƒbƒVƒ…ƒ`ƒFƒbƒN: cacheKey={cacheKey}");
-McpLogger?.Debug($"{LogPrefix} ƒŠƒ|ƒWƒgƒŠ‚ðŠJ‚«‚Ü‚·: localPath={localPath}");
+// ? é©åˆ‡ï¼šå†…éƒ¨çŠ¶æ…‹ã€ãƒ•ãƒ­ãƒ¼ç¢ºèª
+McpLogger?.Debug($"{LogPrefix} ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯: cacheKey={cacheKey}");
+McpLogger?.Debug($"{LogPrefix} ãƒªãƒã‚¸ãƒˆãƒªã‚’é–‹ãã¾ã™: localPath={localPath}");
 
-// ? ‰ßèF‚·‚×‚Ä‚Ì•Ï”’l
+// ? éŽå‰°ï¼šã™ã¹ã¦ã®å¤‰æ•°å€¤
 McpLogger?.Debug($"{LogPrefix} i={i}, j={j}, k={k}");
 ```
 
 ---
 
-## 8. ƒ`ƒFƒbƒNƒŠƒXƒgFƒƒOŽÀ‘•ƒŒƒrƒ…[
+## 8. ãƒã‚§ãƒƒã‚¯ãƒªã‚¹ãƒˆï¼šãƒ­ã‚°å®Ÿè£…ãƒ¬ãƒ“ãƒ¥ãƒ¼
 
-V‚µ‚¢ƒT[ƒrƒXƒNƒ‰ƒX‚ðŽÀ‘•‚µ‚½‚çAˆÈ‰º‚ðŠm”F‚µ‚Ä‚­‚¾‚³‚¢B
+æ–°ã—ã„ã‚µãƒ¼ãƒ“ã‚¹ã‚¯ãƒ©ã‚¹ã‚’å®Ÿè£…ã—ãŸã‚‰ã€ä»¥ä¸‹ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚
 
-- [ ] LogPrefix ’è”‚ð’è‹`‚µ‚Ä‚¢‚é
-- [ ] ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å‰Šú‰»ŠJŽnEŠ®—¹‚ðƒƒO‹L˜^
-- [ ] ŒöŠJƒƒ\ƒbƒh‚Åˆ—ŠJŽnEŠ®—¹‚ðƒƒO‹L˜^
-- [ ] —áŠO‚ð throw ‚·‚é‘O‚É Critical ƒƒO‚ð‹L˜^
-- [ ] —áŠOƒIƒuƒWƒFƒNƒg‚ðƒƒO‚ÉŠÜ‚ß‚Ä‚¢‚é
-- [ ] ‹@–§î•ñ‚ðƒ}ƒXƒN‚µ‚Ä‚¢‚é
-- [ ] ƒƒOƒŒƒxƒ‹iCritical/Error/Warnj‚ð“KØ‚ÉŽg‚¢•ª‚¯‚Ä‚¢‚é
-- [ ] Žå—vƒpƒ‰ƒ[ƒ^‚ÆŒ‹‰Ê‚ðƒƒO‚ÉŠÜ‚ß‚Ä‚¢‚é
-- [ ] ŠO•”ƒT[ƒrƒXŒÄ‚Ño‚µ‚ðƒƒO‹L˜^‚µ‚Ä‚¢‚é
-- [ ] ƒtƒH[ƒ‹ƒoƒbƒNˆ—‚ðƒƒO‹L˜^‚µ‚Ä‚¢‚é
+- [ ] LogPrefix å®šæ•°ã‚’å®šç¾©ã—ã¦ã„ã‚‹
+- [ ] ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§åˆæœŸåŒ–é–‹å§‹ãƒ»å®Œäº†ã‚’ãƒ­ã‚°è¨˜éŒ²
+- [ ] å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰ã§å‡¦ç†é–‹å§‹ãƒ»å®Œäº†ã‚’ãƒ­ã‚°è¨˜éŒ²
+- [ ] ä¾‹å¤–ã‚’ throw ã™ã‚‹å‰ã« Critical ãƒ­ã‚°ã‚’è¨˜éŒ²
+- [ ] ä¾‹å¤–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ­ã‚°ã«å«ã‚ã¦ã„ã‚‹
+- [ ] æ©Ÿå¯†æƒ…å ±ã‚’ãƒžã‚¹ã‚¯ã—ã¦ã„ã‚‹
+- [ ] ãƒ­ã‚°ãƒ¬ãƒ™ãƒ«ï¼ˆCritical/Error/Warnï¼‰ã‚’é©åˆ‡ã«ä½¿ã„åˆ†ã‘ã¦ã„ã‚‹
+- [ ] ä¸»è¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨çµæžœã‚’ãƒ­ã‚°ã«å«ã‚ã¦ã„ã‚‹
+- [ ] å¤–éƒ¨ã‚µãƒ¼ãƒ“ã‚¹å‘¼ã³å‡ºã—ã‚’ãƒ­ã‚°è¨˜éŒ²ã—ã¦ã„ã‚‹
+- [ ] ãƒ•ã‚©ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ã‚’ãƒ­ã‚°è¨˜éŒ²ã—ã¦ã„ã‚‹
 
 ---
 
-## 9. ‚Ü‚Æ‚ß
+## 9. ã¾ã¨ã‚
 
-### ƒƒOŽÀ‘•‚Ì‰©‹à—¥
+### ãƒ­ã‚°å®Ÿè£…ã®é»„é‡‘å¾‹
 
-1. **—áŠO‚ðæ‚Éì¬‚µAƒƒO‚ÉŠÜ‚ß‚Ä‚©‚ç throw**
-2. **Critical vs Error ‚ð³‚µ‚­Žg‚¢•ª‚¯‚é**
-3. **Žå—v‚Èˆ—ƒtƒ[‚Í•K‚¸ƒƒO‹L˜^**
-4. **‹@–§î•ñ‚Í•K‚¸ƒ}ƒXƒN**
-5. **‰ßè‚ÈƒƒO‚Í”ð‚¯‚éiƒpƒtƒH[ƒ}ƒ“ƒX‚Æ‰Â“Ç«‚Ì‚½‚ßj**
+1. **ä¾‹å¤–ã‚’å…ˆã«ä½œæˆã—ã€ãƒ­ã‚°ã«å«ã‚ã¦ã‹ã‚‰ throw**
+2. **Critical vs Error ã‚’æ­£ã—ãä½¿ã„åˆ†ã‘ã‚‹**
+3. **ä¸»è¦ãªå‡¦ç†ãƒ•ãƒ­ãƒ¼ã¯å¿…ãšãƒ­ã‚°è¨˜éŒ²**
+4. **æ©Ÿå¯†æƒ…å ±ã¯å¿…ãšãƒžã‚¹ã‚¯**
+5. **éŽå‰°ãªãƒ­ã‚°ã¯é¿ã‘ã‚‹ï¼ˆãƒ‘ãƒ•ã‚©ãƒ¼ãƒžãƒ³ã‚¹ã¨å¯èª­æ€§ã®ãŸã‚ï¼‰**
 
-‚±‚ÌƒKƒCƒhƒ‰ƒCƒ“‚É]‚¤‚±‚Æ‚ÅA“ˆê“I‚Å•ÛŽç‚µ‚â‚·‚¢ƒƒOŽÀ‘•‚ªŽÀŒ»‚Å‚«‚Ü‚·B
+ã“ã®ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³ã«å¾“ã†ã“ã¨ã§ã€çµ±ä¸€çš„ã§ä¿å®ˆã—ã‚„ã™ã„ãƒ­ã‚°å®Ÿè£…ãŒå®Ÿç¾ã§ãã¾ã™ã€‚

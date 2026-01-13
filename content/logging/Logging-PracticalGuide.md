@@ -1,49 +1,56 @@
-# MCP ���M���O ���H�K�C�h
+---
+title: MCP ロギング 実践ガイド
+sidebar_label: ロギング実践ガイド
+tags: [Ateliers.Ai.Mcp, Logging, ロギング, ガイド]
+description: Ateliers.Ai.Mcp のロギングの実践的な使用ガイドに関するドキュメント
+---
 
-���̃h�L�������g�́AMCP���M���O��**���H�I�Ȏg�p�K�C�h**��񋟂��܂��B
-Logging Policy��⊮���A�J���A�f�o�b�O�A�^�p����**���O�����ۂɂǂ̂悤�Ɏg�p����邩**��������܂��B
+# MCP ロギング 実践ガイド
 
-���̃K�C�h�́AMVP�t�F�[�Y���**�h�L�������g�쓮�J��**���T�|�[�g���邽�߂ɏ�����Ă��܂��B
+このドキュメントは、MCPロギングの**実践的な使用ガイド**を提供します。
+Logging Policyを補完し、開発、デバッグ、運用中に**ログが実際にどのように使用されるか**を説明します。
+
+このガイドは、MVPフェーズ後の**ドキュメント駆動開発**をサポートするために書かれています。
 
 ---
 
-## 1. ���O�ێ����� ��̓I�Ȏ���
+## 1. ログ保持期間 具体的な実装
 
-### 1.1 �ړI
+### 1.1 目的
 
-MCP���O�͖������ɕێ�����܂���B
-�ێ����Ԃ����݂��闝�R�F
+MCPログは無期限に保持されません。
+保持期間が存在する理由：
 
-- �f�B�X�N�e�ʂ̌͊���h��
-- ���O���֘A���������ǂ݂₷����Ԃɕۂ�
-- �^�p�����e�i���X��Ƃ��������
+- ディスク容量の枯渇を防ぐ
+- ログを関連性が高く読みやすい状態に保つ
+- 運用メンテナンス作業を回避する
 
-�ێ����ԏ�����**MCP�N�����Ɉ�x����**���s����܂��B
+保持期間処理は**MCP起動時に一度だけ**実行されます。
 
 ---
 
-### 1.2 �f�B���N�g�����C�A�E�g�̑O��
+### 1.2 ディレクトリレイアウトの前提
 
 ```
 logs/
-���� app/     # Information / �ʏ���s���O
-���� error/   # Error / �N���e�B�J�����O
-���� trace/   # LLM / �ڍ׃g���[�X���O�i�I�v�V�����j
+├─ app/     # Information / 通常実行ログ
+├─ error/   # Error / クリティカルログ
+├─ trace/   # LLM / 詳細トレースログ（オプション）
 ```
 
 ---
 
-### 1.3 �ێ��|���V�[�i�L�����ԁj
+### 1.3 保持ポリシー（有効期間）
 
-| �J�e�S�� | ���O���x�� | �ێ����� |
+| カテゴリ | ログレベル | 保持期間 |
 |---------|-----------|---------|
-| trace   | Trace     | 1�`3��   |
-| app     | Info      | 14��    |
-| error   | Error+    | 90��    |
+| trace   | Trace     | 1～3日   |
+| app     | Info      | 14日    |
+| error   | Error+    | 90日    |
 
 ---
 
-### 1.4 ���ۂ̃N���[���A�b�v���W�b�N�i�Q�l�j
+### 1.4 実際のクリーンアップロジック（参考）
 
 ```csharp
 private void CleanDirectory(string subDir, TimeSpan retention)
@@ -67,164 +74,164 @@ private void CleanDirectory(string subDir, TimeSpan retention)
             }
             catch
             {
-                // �폜���s�͖���
+                // 削除失敗は無視
             }
         }
     }
 }
 ```
 
-**�݌v����**
+**設計メモ**
 
-- �^�C���]�[���̈��S���̂��� `LastWriteTimeUtc` ���g�p
-- �폜���s�͖���
-- �N���[���A�b�v���̂̓��O�ɋL�^���Ȃ��i���O�̑���������邽�߁j
-
----
-
-## 2. ���O�̎g�p���@�i�^�p���_�j
-
-���̃Z�N�V�����ł́A�󋵂ɉ�����**�ŏ��ɂǂ̃��O���m�F���ׂ���**��������܂��B
+- タイムゾーンの安全性のため `LastWriteTimeUtc` を使用
+- 削除失敗は無視
+- クリーンアップ自体はログに記録しない（ログの増幅を避けるため）
 
 ---
 
-## 3. �ʏ��MCP���s�m�F
+## 2. ログの使用方法（運用視点）
 
-### ��
-- MCP������Ɏ��s���ꂽ
-- ������m�F������
+このセクションでは、状況に応じて**最初にどのログを確認すべきか**を説明します。
 
-### �m�F���郍�O
+---
+
+## 3. 通常のMCP実行確認
+
+### 状況
+- MCPが正常に実行された
+- 動作を確認したい
+
+### 確認するログ
 `logs/app/mcp-YYYY-MM-DD.log`
 
-### �m�F���e
+### 確認内容
 ```
 [INFO] MCP.Start
 [INFO] MCP.Success
 ```
 
-### ����
-- ���s�͐���Ɋ���
-- ����Ȃ钲���͕s�v
+### 解釈
+- 実行は正常に完了
+- さらなる調査は不要
 
 ---
 
-## 4. MCP���s�����s�����ꍇ
+## 4. MCP実行が失敗した場合
 
-### ��
-- �c�[�������s��Ԃ���
-- CLI / �Ăяo�������G���[���
+### 状況
+- ツールが失敗を返した
+- CLI / 呼び出し元がエラーを報告
 
-### �m�F���郍�O�i�������d�v�j
+### 確認するログ（順序が重要）
 1. `logs/error/`
-2. �Ή����� `logs/app/`
+2. 対応する `logs/app/`
 
-### �m�F���e
+### 確認内容
 ```
 [ERROR] MCP.Failed
 Exception: ...
 CorrelationId=xxxx
 ```
 
-���̌�A���� `CorrelationId` �� app ���O�Ō������܂��B
+その後、同じ `CorrelationId` を app ログで検索します。
 
-### ����
-- �G���[���O��**�Ȃ�**���s�����������
-- app���O�����s�O��**�����N���Ă�����**�����
+### 解釈
+- エラーログが**なぜ**失敗したかを説明
+- appログが失敗前に**何が起きていたか**を説明
 
 ---
 
-## 5. �O���T�[�r�X / API �̖��
+## 5. 外部サービス / API の問題
 
-### ��
-- Notion / GitHub / �O��API�����s
-- �F�؂܂��̓l�b�g���[�N��肪�^����
+### 状況
+- Notion / GitHub / 外部APIが失敗
+- 認証またはネットワーク問題が疑われる
 
-### �m�F���郍�O
+### 確認するログ
 `logs/error/`
 
-�ȉ����܂ރG���g���F
+以下を含むエントリ：
 - ToolName
-- �G���h�|�C���g���
-- HTTP�X�e�[�^�X
+- エンドポイント情報
+- HTTPステータス
 
-### �T�^�I�ȃp�^�[��
+### 典型的なパターン
 ```
 [ERROR] External service call failed
 status=401
 ```
 
-### ����
-- �ݒ�܂��͔F�؏��̖��̉\��������
-- MCP���̂̃��W�b�N�o�O�ł͂Ȃ�
+### 解釈
+- 設定または認証情報の問題の可能性が高い
+- MCP自体のロジックバグではない
 
 ---
 
-## 6. LLM / AI ����̒���
+## 6. LLM / AI 動作の調査
 
-### ��
-- �\�����Ȃ�LLM�o��
-- �v�����v�g�܂��͐��_�̌������K�v
+### 状況
+- 予期しないLLM出力
+- プロンプトまたは推論の検査が必要
 
-### �m�F���郍�O
-`logs/trace/`�i�L���ȏꍇ�̂݁j
+### 確認するログ
+`logs/trace/`（有効な場合のみ）
 
-### ���ӎ���
-- �g���[�X���O�̓f�t�H���g�Ŗ���
-- �����A�`���[�j���O�A�f�o�b�O��ړI�Ƃ��Ă���
-- �ʏ�̉^�p�ɂ͕s�v
-
----
-
-## 7. CorrelationId �̎g�p���@
-
-���ׂĂ�MCP���s�ɂ� `CorrelationId` ������܂��B
-
-### �ړI
-�ȉ����܂����Ń��O���֘A�t����F
-- �c�[�����s
-- API�Ăяo��
-- LLM�C���^���N�V����
-- �t�@�C������
-
-### �g�p���@
-1. �G���[���O�� `CorrelationId` ��������
-2. app���O�œ���ID������
-3. ���s�^�C�����C�����č\�z
+### 注意事項
+- トレースログはデフォルトで無効
+- 研究、チューニング、デバッグを目的としている
+- 通常の運用には不要
 
 ---
 
-## 8. ���M���O vs ��O ? �݌v���[��
+## 7. CorrelationId の使用方法
 
-MCP�͈ȉ��̌����ɏ]���܂��F
+すべてのMCP実行には `CorrelationId` があります。
 
-> **��O�͎��s���~����B**  
-> **���O�͉����N���������������B**
+### 目的
+以下をまたいでログを関連付ける：
+- ツール実行
+- API呼び出し
+- LLMインタラクション
+- ファイル操作
 
-### ���H�I�ȈӖ�
-- ��O�͔ėp�I�ȏꍇ������
-- ���O�ɂ͏�ɃR���e�L�X�g���܂܂��
-- **��O���b�Z�[�W�����ɗ���Ȃ��B**
-- **��Ƀ��O���ŏ��Ɋm�F����B**
-
----
-
-## 9. ���O���g�p����Ȃ��p�r
-
-�ȉ���MCP Core���M���O�̃X�R�[�v�O�ł��F
-
-- �r�W�l�X����
-- ���g���N�X�W�v
-- �č��ؐ�
-- �����ۑ�
+### 使用方法
+1. エラーログで `CorrelationId` を見つける
+2. appログで同じIDを検索
+3. 実行タイムラインを再構築
 
 ---
 
-## 10. �܂Ƃ�
+## 8. ロギング vs 例外 ? 設計ルール
 
-- **���O�͎�v�ȉϑ������J�j�Y���ł���**
-- **�ێ����Ԃ͎����I���ێ�I�ł���**
-- **�^�p�t���[�͏�Ƀ��O����n�܂�**
-- **��O�\���̓��M���O�̓񎟓I�Ȃ��̂ł���**
+MCPは以下の原則に従います：
 
-���̐݌v�́A���m���A���S���A�i�������Ӑ}�I�ɗD�悵�Ă��܂��B
+> **例外は実行を停止する。**  
+> **ログは何が起きたかを説明する。**
+
+### 実践的な意味
+- 例外は汎用的な場合がある
+- ログには常にコンテキストが含まれる
+- **例外メッセージだけに頼らない。**
+- **常にログを最初に確認する。**
+
+---
+
+## 9. ログが使用されない用途
+
+以下はMCP Coreロギングのスコープ外です：
+
+- ビジネス分析
+- メトリクス集計
+- 監査証跡
+- 長期保存
+
+---
+
+## 10. まとめ
+
+- **ログは主要な可観測性メカニズムである**
+- **保持期間は自動的かつ保守的である**
+- **運用フローは常にログから始まる**
+- **例外構造はロギングの二次的なものである**
+
+この設計は、明確性、安全性、進化性を意図的に優先しています。

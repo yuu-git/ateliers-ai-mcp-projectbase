@@ -1,13 +1,20 @@
-# MCP ÀsƒRƒ“ƒeƒLƒXƒgg—p•û–@
+---
+title: MCP å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆä½¿ç”¨æ–¹æ³•
+sidebar_label: MCP å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆä½¿ç”¨æ–¹æ³•
+tags: [Ateliers.Ai.Mcp, Context, MCP]
+description: Ateliers.Ai.Mcp ã®å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½¿ç”¨æ–¹æ³•ã«é–¢ã™ã‚‹ã‚¬ã‚¤ãƒ‰
+---
 
-## ŠT—v
+# MCP å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆä½¿ç”¨æ–¹æ³•
 
-MCP ÀsƒRƒ“ƒeƒLƒXƒg‚ÍAƒc[ƒ‹‚ÌÀs‚ğ’ÇÕ‚·‚é‚½‚ß‚Ìd‘g‚İ‚Å‚·B
-Šeƒc[ƒ‹‚ÌÀs‚É‚ÍˆêˆÓ‚Ì‘ŠŠÖIDiCorrelationIdj‚ªŠ„‚è“–‚Ä‚ç‚êAƒc[ƒ‹–¼‚Æ‹¤‚ÉŠÇ—‚³‚ê‚Ü‚·B
+## æ¦‚è¦
 
-## Šî–{“I‚Èg‚¢•û
+MCP å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¯ã€ãƒ„ãƒ¼ãƒ«ã®å®Ÿè¡Œã‚’è¿½è·¡ã™ã‚‹ãŸã‚ã®ä»•çµ„ã¿ã§ã™ã€‚
+å„ãƒ„ãƒ¼ãƒ«ã®å®Ÿè¡Œã«ã¯ä¸€æ„ã®ç›¸é–¢IDï¼ˆCorrelationIdï¼‰ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã€ãƒ„ãƒ¼ãƒ«åã¨å…±ã«ç®¡ç†ã•ã‚Œã¾ã™ã€‚
 
-### 1. DI ƒRƒ“ƒeƒi‚Ö‚Ì“o˜^
+## åŸºæœ¬çš„ãªä½¿ã„æ–¹
+
+### 1. DI ã‚³ãƒ³ãƒ†ãƒŠã¸ã®ç™»éŒ²
 
 ```csharp
 using Ateliers.Ai.Mcp.DependencyInjection;
@@ -15,13 +22,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
 
-// MCP ÀsƒRƒ“ƒeƒLƒXƒg‚ğ“o˜^
+// MCP å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ç™»éŒ²
 services.AddMcpExecutionContext();
 
 var serviceProvider = services.BuildServiceProvider();
 ```
 
-### 2. ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“
+### 2. ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -38,44 +45,44 @@ public class MyMcpTool
 
     public async Task ExecuteAsync()
     {
-        // ƒc[ƒ‹ƒXƒR[ƒv‚ğŠJn
+        // ãƒ„ãƒ¼ãƒ«ã‚¹ã‚³ãƒ¼ãƒ—ã‚’é–‹å§‹
         using var scope = _context.BeginTool("my.tool");
         
-        // ‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ª©“®İ’è‚³‚ê‚é
+        // ç›¸é–¢IDã¨ãƒ„ãƒ¼ãƒ«åãŒè‡ªå‹•è¨­å®šã•ã‚Œã‚‹
         Console.WriteLine($"CorrelationId: {_context.CorrelationId}");
         Console.WriteLine($"ToolName: {_context.ToolName}");
         
-        // ƒc[ƒ‹ˆ—
+        // ãƒ„ãƒ¼ãƒ«å‡¦ç†
         await ProcessAsync();
     }
     
     private async Task ProcessAsync()
     {
-        // ‚±‚Ìƒƒ\ƒbƒh“à‚Å‚à“¯‚¶ƒRƒ“ƒeƒLƒXƒg‚ª—˜—p‰Â”\
+        // ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰å†…ã§ã‚‚åŒã˜ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒåˆ©ç”¨å¯èƒ½
         Console.WriteLine($"Still in context: {_context.CorrelationId}");
         await Task.Delay(100);
     }
 }
 ```
 
-## ƒXƒR[ƒv‚ÌŠÇ—
+## ã‚¹ã‚³ãƒ¼ãƒ—ã®ç®¡ç†
 
-### ƒc[ƒ‹ƒXƒR[ƒv
+### ãƒ„ãƒ¼ãƒ«ã‚¹ã‚³ãƒ¼ãƒ—
 
 ```csharp
 public async Task ExecuteToolAsync()
 {
-    // using ƒXƒe[ƒgƒƒ“ƒg‚ÅƒXƒR[ƒv‚ğŠÇ—
+    // using ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã§ã‚¹ã‚³ãƒ¼ãƒ—ã‚’ç®¡ç†
     using var scope = _context.BeginTool("notion.sync");
     
-    // ƒXƒR[ƒv“à‚Ìˆ—
+    // ã‚¹ã‚³ãƒ¼ãƒ—å†…ã®å‡¦ç†
     await SyncNotionAsync();
     
-    // ƒXƒR[ƒvI—¹‚É©“®“I‚ÉƒNƒŠ[ƒ“ƒAƒbƒv
+    // ã‚¹ã‚³ãƒ¼ãƒ—çµ‚äº†æ™‚ã«è‡ªå‹•çš„ã«ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
 }
 ```
 
-### ƒlƒXƒg‚µ‚½ƒXƒR[ƒv
+### ãƒã‚¹ãƒˆã—ãŸã‚¹ã‚³ãƒ¼ãƒ—
 
 ```csharp
 public async Task ParentToolAsync()
@@ -84,10 +91,10 @@ public async Task ParentToolAsync()
     Console.WriteLine($"Parent CorrelationId: {_context.CorrelationId}");
     Console.WriteLine($"Parent ToolName: {_context.ToolName}");
     
-    // qƒc[ƒ‹‚ğŒÄ‚Ño‚µ
+    // å­ãƒ„ãƒ¼ãƒ«ã‚’å‘¼ã³å‡ºã—
     await ChildToolAsync();
     
-    // eƒXƒR[ƒv‚É–ß‚é
+    // è¦ªã‚¹ã‚³ãƒ¼ãƒ—ã«æˆ»ã‚‹
     Console.WriteLine($"Back to parent: {_context.CorrelationId}");
 }
 
@@ -101,9 +108,9 @@ private async Task ChildToolAsync()
 }
 ```
 
-## ‘ŠŠÖID‚ÌŠˆ—p
+## ç›¸é–¢IDã®æ´»ç”¨
 
-### ƒƒO‚Æ‚Ì“‡
+### ãƒ­ã‚°ã¨ã®çµ±åˆ
 
 ```csharp
 public class NotionSyncTool
@@ -121,7 +128,7 @@ public class NotionSyncTool
     {
         using var scope = _context.BeginTool("notion.sync");
         
-        // ƒƒO‚É©“®“I‚É‘ŠŠÖID‚Æƒc[ƒ‹–¼‚ª•t—^‚³‚ê‚é
+        // ãƒ­ã‚°ã«è‡ªå‹•çš„ã«ç›¸é–¢IDã¨ãƒ„ãƒ¼ãƒ«åãŒä»˜ä¸ã•ã‚Œã‚‹
         _logger.Info("MCP.Start");  // [CID:abc-123] [Tool:notion.sync] MCP.Start
         
         try
@@ -138,7 +145,7 @@ public class NotionSyncTool
 }
 ```
 
-### HTTPƒŠƒNƒGƒXƒgƒwƒbƒ_[‚Ö‚Ì’Ç‰Á
+### HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼ã¸ã®è¿½åŠ 
 
 ```csharp
 public class ApiClient
@@ -156,7 +163,7 @@ public class ApiClient
     {
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         
-        // ‘ŠŠÖID‚ğƒwƒbƒ_[‚É’Ç‰Ái•ªUƒgƒŒ[ƒVƒ“ƒOj
+        // ç›¸é–¢IDã‚’ãƒ˜ãƒƒãƒ€ãƒ¼ã«è¿½åŠ ï¼ˆåˆ†æ•£ãƒˆãƒ¬ãƒ¼ã‚·ãƒ³ã‚°ï¼‰
         if (!string.IsNullOrEmpty(_context.CorrelationId))
         {
             request.Headers.Add("X-Correlation-Id", _context.CorrelationId);
@@ -168,32 +175,32 @@ public class ApiClient
 }
 ```
 
-## •¡”ƒc[ƒ‹‚ÌÀs
+## è¤‡æ•°ãƒ„ãƒ¼ãƒ«ã®å®Ÿè¡Œ
 
-### ‡ŸÀs
+### é †æ¬¡å®Ÿè¡Œ
 
 ```csharp
 public async Task ExecuteMultipleToolsAsync()
 {
-    // ƒc[ƒ‹1
+    // ãƒ„ãƒ¼ãƒ«1
     using (var scope1 = _context.BeginTool("tool1"))
     {
         _logger.Info("Executing tool1");
         await Task.Delay(100);
     }
     
-    // ƒc[ƒ‹2
+    // ãƒ„ãƒ¼ãƒ«2
     using (var scope2 = _context.BeginTool("tool2"))
     {
         _logger.Info("Executing tool2");
         await Task.Delay(100);
     }
     
-    // Šeƒc[ƒ‹‚Í“Æ—§‚µ‚½‘ŠŠÖID‚ğ‚Â
+    // å„ãƒ„ãƒ¼ãƒ«ã¯ç‹¬ç«‹ã—ãŸç›¸é–¢IDã‚’æŒã¤
 }
 ```
 
-### •À—ñÀs
+### ä¸¦åˆ—å®Ÿè¡Œ
 
 ```csharp
 public async Task ExecuteToolsInParallelAsync()
@@ -210,16 +217,16 @@ public async Task ExecuteToolsInParallelAsync()
 
 private async Task ExecuteToolAsync(string toolName)
 {
-    // Šeƒ^ƒXƒN‚Å“Æ—§‚µ‚½ƒRƒ“ƒeƒLƒXƒg‚ğ‚Â
+    // å„ã‚¿ã‚¹ã‚¯ã§ç‹¬ç«‹ã—ãŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’æŒã¤
     using var scope = _context.BeginTool(toolName);
     _logger.Info($"Executing {toolName}");
     await Task.Delay(100);
 }
 ```
 
-## ÀsƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+## å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 
-### Ã“IƒAƒNƒZƒX
+### é™çš„ã‚¢ã‚¯ã‚»ã‚¹
 
 ```csharp
 using Ateliers.Ai.Mcp.Context;
@@ -228,7 +235,7 @@ public class MyService
 {
     public void DoSomething()
     {
-        // Ã“IƒvƒƒpƒeƒB‚©‚çŒ»İ‚ÌƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+        // é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
         var current = McpExecutionContext.Current;
         if (current != null)
         {
@@ -239,14 +246,14 @@ public class MyService
 }
 ```
 
-### DI Œo—R‚Å‚ÌƒAƒNƒZƒXi„§j
+### DI çµŒç”±ã§ã®ã‚¢ã‚¯ã‚»ã‚¹ï¼ˆæ¨å¥¨ï¼‰
 
 ```csharp
 public class MyService
 {
     private readonly IMcpExecutionContext _context;
 
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^ƒCƒ“ƒWƒFƒNƒVƒ‡ƒ“‚ğg—pi„§j
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚¤ãƒ³ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½¿ç”¨ï¼ˆæ¨å¥¨ï¼‰
     public MyService(IMcpExecutionContext context)
     {
         _context = context;
@@ -260,9 +267,9 @@ public class MyService
 }
 ```
 
-## ƒeƒXƒg‚Å‚Ìg—p—á
+## ãƒ†ã‚¹ãƒˆã§ã®ä½¿ç”¨ä¾‹
 
-### Šî–{“I‚ÈƒeƒXƒg
+### åŸºæœ¬çš„ãªãƒ†ã‚¹ãƒˆ
 
 ```csharp
 using Ateliers.Ai.Mcp;
@@ -322,7 +329,7 @@ public class McpExecutionContextTests
                 Assert.NotEqual(parentCorrelationId, childCorrelationId);
             }
             
-            // eƒXƒR[ƒv‚É–ß‚é
+            // è¦ªã‚¹ã‚³ãƒ¼ãƒ—ã«æˆ»ã‚‹
             Assert.Equal(parentCorrelationId, context.CorrelationId);
             Assert.Equal("parent.tool", context.ToolName);
         }
@@ -340,7 +347,7 @@ public class McpExecutionContextTests
         // Act
         using var scope = context.BeginTool("test.tool");
         
-        // Ã“IƒvƒƒpƒeƒB‚©‚çƒAƒNƒZƒX
+        // é™çš„ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹
         var current = McpExecutionContext.Current;
         
         // Assert
@@ -351,7 +358,7 @@ public class McpExecutionContextTests
 }
 ```
 
-### “‡ƒeƒXƒg
+### çµ±åˆãƒ†ã‚¹ãƒˆ
 
 ```csharp
 public class NotionSyncToolIntegrationTests
@@ -388,17 +395,17 @@ public class NotionSyncToolIntegrationTests
 }
 ```
 
-## ƒxƒXƒgƒvƒ‰ƒNƒeƒBƒX
+## ãƒ™ã‚¹ãƒˆãƒ—ãƒ©ã‚¯ãƒ†ã‚£ã‚¹
 
-1. **•K‚¸ using ƒXƒe[ƒgƒƒ“ƒg‚ğg—p‚·‚é**: ƒXƒR[ƒv‚Ì“KØ‚ÈŠÇ—
-2. **DI ‚ÅƒRƒ“ƒeƒLƒXƒg‚ğ’“ü‚·‚é**: Ã“IƒAƒNƒZƒX‚æ‚è‚à„§
-3. **ƒXƒR[ƒv‚Í’Z‚­•Û‚Â**: ƒc[ƒ‹‚ÌÀs’PˆÊ‚ÅƒXƒR[ƒv‚ğì¬
-4. **‘ŠŠÖID‚ğƒƒO‚ÉŠˆ—p‚·‚é**: ƒgƒŒ[ƒTƒrƒŠƒeƒB‚ÌŒüã
-5. **ƒlƒXƒg‚µ‚½ƒXƒR[ƒv‚ğŠˆ—p‚·‚é**: •¡G‚Èˆ—‚ÌŠK‘wŠÇ—
+1. **å¿…ãš using ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’ä½¿ç”¨ã™ã‚‹**: ã‚¹ã‚³ãƒ¼ãƒ—ã®é©åˆ‡ãªç®¡ç†
+2. **DI ã§ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’æ³¨å…¥ã™ã‚‹**: é™çš„ã‚¢ã‚¯ã‚»ã‚¹ã‚ˆã‚Šã‚‚æ¨å¥¨
+3. **ã‚¹ã‚³ãƒ¼ãƒ—ã¯çŸ­ãä¿ã¤**: ãƒ„ãƒ¼ãƒ«ã®å®Ÿè¡Œå˜ä½ã§ã‚¹ã‚³ãƒ¼ãƒ—ã‚’ä½œæˆ
+4. **ç›¸é–¢IDã‚’ãƒ­ã‚°ã«æ´»ç”¨ã™ã‚‹**: ãƒˆãƒ¬ãƒ¼ã‚µãƒ“ãƒªãƒ†ã‚£ã®å‘ä¸Š
+5. **ãƒã‚¹ãƒˆã—ãŸã‚¹ã‚³ãƒ¼ãƒ—ã‚’æ´»ç”¨ã™ã‚‹**: è¤‡é›‘ãªå‡¦ç†ã®éšå±¤ç®¡ç†
 
-## ‚“x‚Èg—p—á
+## é«˜åº¦ãªä½¿ç”¨ä¾‹
 
-### ƒJƒXƒ^ƒ€ƒvƒƒpƒeƒB‚Ì’Ç‰Á
+### ã‚«ã‚¹ã‚¿ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®è¿½åŠ 
 
 ```csharp
 public class ExtendedMcpExecutionContext : McpExecutionContext
@@ -418,7 +425,7 @@ public class ExtendedMcpExecutionContext : McpExecutionContext
     }
 }
 
-// DI “o˜^
+// DI ç™»éŒ²
 services.AddScoped<IMcpExecutionContext>(provider =>
     new ExtendedMcpExecutionContext(
         Guid.NewGuid().ToString(),
@@ -427,7 +434,7 @@ services.AddScoped<IMcpExecutionContext>(provider =>
         sessionId: "session456"));
 ```
 
-### ƒ~ƒhƒ‹ƒEƒFƒA‚Æ‚Ì“‡iASP.NET Corej
+### ãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢ã¨ã®çµ±åˆï¼ˆASP.NET Coreï¼‰
 
 ```csharp
 public class McpContextMiddleware
@@ -444,13 +451,13 @@ public class McpContextMiddleware
         var mcpContext = context.RequestServices
             .GetRequiredService<IMcpExecutionContext>();
 
-        // HTTPƒwƒbƒ_[‚©‚ç‘ŠŠÖID‚ğæ“¾i‘¶İ‚·‚éê‡j
+        // HTTPãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰ç›¸é–¢IDã‚’å–å¾—ï¼ˆå­˜åœ¨ã™ã‚‹å ´åˆï¼‰
         var correlationId = context.Request.Headers["X-Correlation-Id"].FirstOrDefault()
             ?? Guid.NewGuid().ToString();
 
         using var scope = mcpContext.BeginTool(context.Request.Path);
         
-        // ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_[‚É‘ŠŠÖID‚ğ’Ç‰Á
+        // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ã«ç›¸é–¢IDã‚’è¿½åŠ 
         context.Response.Headers.Append("X-Correlation-Id", correlationId);
 
         await _next(context);
@@ -461,31 +468,31 @@ public class McpContextMiddleware
 app.UseMiddleware<McpContextMiddleware>();
 ```
 
-## ƒgƒ‰ƒuƒ‹ƒVƒ…[ƒeƒBƒ“ƒO
+## ãƒˆãƒ©ãƒ–ãƒ«ã‚·ãƒ¥ãƒ¼ãƒ†ã‚£ãƒ³ã‚°
 
-### ƒRƒ“ƒeƒLƒXƒg‚ª null ‚Ìê‡
+### ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒ null ã®å ´åˆ
 
 ```csharp
-// AddMcpExecutionContext ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©Šm”F
+// AddMcpExecutionContext ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
 services.AddMcpExecutionContext();
 
-// ƒXƒR[ƒv‚ªì¬‚³‚ê‚Ä‚¢‚é‚©Šm”F
+// ã‚¹ã‚³ãƒ¼ãƒ—ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
 using var scope = context.BeginTool("tool.name");
 ```
 
-### ‘ŠŠÖID‚ªˆê’v‚µ‚È‚¢ê‡
+### ç›¸é–¢IDãŒä¸€è‡´ã—ãªã„å ´åˆ
 
 ```csharp
-// ”ñ“¯Šúˆ—‚Å ExecutionContext ‚ªˆø‚«Œp‚ª‚ê‚È‚¢ê‡
-// ConfigureAwait(false) ‚ğg—p‚µ‚Ä‚¢‚È‚¢‚©Šm”F
+// éåŒæœŸå‡¦ç†ã§ ExecutionContext ãŒå¼•ãç¶™ãŒã‚Œãªã„å ´åˆ
+// ConfigureAwait(false) ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ã‹ç¢ºèª
 await Task.Delay(100); // OK
-await Task.Delay(100).ConfigureAwait(false); // NG: ƒRƒ“ƒeƒLƒXƒg‚ª¸‚í‚ê‚é
+await Task.Delay(100).ConfigureAwait(false); // NG: ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒå¤±ã‚ã‚Œã‚‹
 ```
 
-### ƒlƒXƒg‚µ‚½ƒXƒR[ƒv‚ª‚¤‚Ü‚­“®ì‚µ‚È‚¢ê‡
+### ãƒã‚¹ãƒˆã—ãŸã‚¹ã‚³ãƒ¼ãƒ—ãŒã†ã¾ãå‹•ä½œã—ãªã„å ´åˆ
 
 ```csharp
-// using ƒXƒe[ƒgƒƒ“ƒg‚ğ³‚µ‚­g—p‚µ‚Ä‚¢‚é‚©Šm”F
+// using ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’æ­£ã—ãä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ç¢ºèª
 using (var scope1 = context.BeginTool("tool1"))
 {
     using (var scope2 = context.BeginTool("tool2"))
@@ -494,12 +501,12 @@ using (var scope1 = context.BeginTool("tool1"))
     }
 }
 
-// ˆÈ‰º‚Í NG: scope ‚ª“KØ‚É•Â‚¶‚ç‚ê‚È‚¢
+// ä»¥ä¸‹ã¯ NG: scope ãŒé©åˆ‡ã«é–‰ã˜ã‚‰ã‚Œãªã„
 var scope1 = context.BeginTool("tool1");
 var scope2 = context.BeginTool("tool2");
 ```
 
-## QlƒŠƒ“ƒN
+## å‚è€ƒãƒªãƒ³ã‚¯
 
 - [MCP Logging USAGE](../logging/USAGE.md)
 - [Ateliers.Core ExecutionContext](../../../Ateliers.Core/Context/)

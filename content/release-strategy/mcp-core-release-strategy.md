@@ -1,4 +1,4 @@
-﻿---
+---
 title: リリース戦略 (mcp-core)
 category: プロジェクトナレッジ
 description: Ateliers.Ai.Mcp.Core の NuGet パッケージリリース戦略、バージョニング、ワークフローについて解説します。

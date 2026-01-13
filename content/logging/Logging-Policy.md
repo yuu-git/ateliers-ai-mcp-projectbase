@@ -1,4 +1,11 @@
-﻿# MCP Logging Policy
+---
+title: MCP ロギング ポリシー
+sidebar_label: ロギングポリシー
+tags: [Ateliers.Ai.Mcp, Logging, ロギング, ポリシー]
+description: Ateliers.Ai.Mcp エコシステムにおけるロギングの方針に関するドキュメント
+---
+
+# MCP Logging Policy
 
 ## 1. 目的（Purpose）
 
